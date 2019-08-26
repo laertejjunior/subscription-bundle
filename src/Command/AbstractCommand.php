@@ -3,7 +3,7 @@
 namespace Shapecode\SubscriptionBundle\Command;
 
 use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
+use Shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
 use Shapecode\SubscriptionBundle\Subscription\SubscriptionManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

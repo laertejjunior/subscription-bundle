@@ -4,7 +4,7 @@ namespace Shapecode\SubscriptionBundle\Strategy;
 
 use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 use Shapecode\SubscriptionBundle\Subscription\ProductRegistry;
-use shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
+use Shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
 use Shapecode\SubscriptionBundle\Subscription\SubscriptionRegistry;
 
 /**

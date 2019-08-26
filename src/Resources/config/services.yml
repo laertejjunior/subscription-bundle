@@ -4,14 +4,14 @@ services:
         autoconfigure: true
         public: false
         bind:
-            $config: '%shapecode_subscription.config%'
+            $bundleConfig: '%shapecode_subscription.config%'
 
     # trader
     Shapecode\SubscriptionBundle\Command\:
-        resource: '../src/Command/*'
+        resource: '../../Command/*'
 
     Shapecode\SubscriptionBundle\Subscription\:
-        resource: '../src/Subscription/*'
+        resource: '../../Subscription/*'
 
     Shapecode\SubscriptionBundle\Strategy\:
-        resource: '../src/Strategy/*'
+        resource: '../../Strategy/*'

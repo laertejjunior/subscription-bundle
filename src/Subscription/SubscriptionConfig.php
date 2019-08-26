@@ -1,6 +1,6 @@
 <?php
 
-namespace shapecode\SubscriptionBundle\Subscription;
+namespace Shapecode\SubscriptionBundle\Subscription;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface;
@@ -23,14 +23,14 @@ class SubscriptionConfig
 
     /**
      * @param ManagerRegistry $registry
-     * @param array           $config
+     * @param array           $bundleConfig
      */
     public function __construct(
         ManagerRegistry $registry,
-        array $config
+        array $bundleConfig
     ) {
         $this->registry = $registry;
-        $this->config = $config;
+        $this->config = $bundleConfig;
     }
 
     /**

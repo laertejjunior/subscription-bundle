@@ -9,7 +9,7 @@ use Shapecode\SubscriptionBundle\Model\ProductInterface;
 use Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface;
 use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
 use Shapecode\SubscriptionBundle\Subscription\ProductRegistry;
-use shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
+use Shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
 use Shapecode\SubscriptionBundle\Subscription\SubscriptionRegistry;
 
 abstract class AbstractProductStrategy implements ProductStrategyInterface
