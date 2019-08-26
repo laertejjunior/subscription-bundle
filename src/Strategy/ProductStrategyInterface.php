@@ -1,9 +1,9 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Strategy;
+namespace Shapecode\SubscriptionBundle\Strategy;
 
-use Terox\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
-use Terox\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
 
 interface ProductStrategyInterface
 {
@@ -18,5 +18,10 @@ interface ProductStrategyInterface
      *
      * @throws ProductDefaultNotFoundException
      */
-    public function getFinalProduct(ProductInterface $product);
+    public function getFinalProduct(ProductInterface $product): ProductInterface;
+
+    /**
+     * @return string
+     */
+    public function getShortName(): string;
 }

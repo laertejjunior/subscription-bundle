@@ -1,86 +1,83 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Subscription;
+namespace Shapecode\SubscriptionBundle\Subscription;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Shapecode\SubscriptionBundle\Event\SubscriptionEvent;
+use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Shapecode\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
+use Shapecode\SubscriptionBundle\Exception\StrategyNotFoundException;
+use Shapecode\SubscriptionBundle\Exception\SubscriptionIntegrityException;
+use Shapecode\SubscriptionBundle\Exception\SubscriptionRenewalException;
+use Shapecode\SubscriptionBundle\Exception\SubscriptionStatusException;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Strategy\SubscriptionStrategyInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Terox\SubscriptionBundle\Event\SubscriptionEvent;
-use Terox\SubscriptionBundle\Event\SubscriptionEvents;
-use Terox\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Terox\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
-use Terox\SubscriptionBundle\Exception\StrategyNotFoundException;
-use Terox\SubscriptionBundle\Exception\SubscriptionRenewalException;
-use Terox\SubscriptionBundle\Exception\SubscriptionStatusException;
-use Terox\SubscriptionBundle\Exception\SubscriptionIntegrityException;
-use Terox\SubscriptionBundle\Model\ProductInterface;
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
-use Terox\SubscriptionBundle\Registry\SubscriptionRegistry;
-use Terox\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
-use Terox\SubscriptionBundle\Strategy\SubscriptionStrategyInterface;
 
 /**
- * Manages subscription workflow.
+ * Class SubscriptionManager
  *
+ * @package Shapecode\SubscriptionBundle\Subscription
+ * @author  Nikita Loges
  */
 class SubscriptionManager
 {
-    /**
-     * @var SubscriptionRegistry
-     */
-    private $registry;
+
+    /** @var ManagerRegistry */
+    protected $registry;
+
+    /** @var SubscriptionRegistry */
+    protected $subscriptionRegistry;
+
+    /** @var EventDispatcherInterface */
+    protected $eventDispatcher;
+
+    /** @var SubscriptionConfig */
+    protected $config;
 
     /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
-     * @var string
-     */
-    private $config;
-
-    /**
-     * Constructor.
-     *
-     * @param SubscriptionRegistry            $registry               Registry of strategies
-     * @param SubscriptionRepositoryInterface $subscriptionRepository Subscription repository
-     * @param EventDispatcherInterface        $eventDispatcher        Event Dispatcher
-     * @param array                           $config                 Bundle configuration
+     * @param ManagerRegistry          $registry
+     * @param SubscriptionRegistry     $subscriptionRegistry
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param SubscriptionConfig       $config
      */
     public function __construct(
-        SubscriptionRegistry $registry,
-        SubscriptionRepositoryInterface $subscriptionRepository,
+        ManagerRegistry $registry,
+        SubscriptionRegistry $subscriptionRegistry,
         EventDispatcherInterface $eventDispatcher,
-        $config
-    )
-    {
-        $this->registry               = $registry;
-        $this->subscriptionRepository = $subscriptionRepository;
-        $this->eventDispatcher        = $eventDispatcher;
-        $this->config                 = $config;
+        SubscriptionConfig $config
+    ) {
+        $this->registry = $registry;
+        $this->subscriptionRegistry = $subscriptionRegistry;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->config = $config;
     }
 
     /**
      * Create a new subscription with a determinate strategy.
      *
-     * @param ProductInterface $product      Product that you want associate with subscription
-     * @param UserInterface    $user         User to associate to subscription
-     * @param string           $strategyName If you keep this null it will use product default strategy
+     * @param ProductInterface $product
+     * @param UserInterface    $user
+     * @param null             $strategyName
      *
      * @return SubscriptionInterface
      *
+     * @throws PermanentSubscriptionException
      * @throws StrategyNotFoundException
      * @throws SubscriptionIntegrityException
-     * @throws PermanentSubscriptionException
      */
-    public function create(ProductInterface $product, UserInterface $user, $strategyName = null)
+    public function create(ProductInterface $product, UserInterface $user, $strategyName = null): SubscriptionInterface
     {
         // Get strategy
         $strategyName = $strategyName ?? $product->getStrategyCodeName();
-        $strategy     = $this->registry->get($strategyName);
+        $strategy = $this->subscriptionRegistry->get($strategyName);
+
+        $repo = $this->config->getSubscriptionRepository();
 
         // Get current enabled subscriptions of product
-        $subscriptions = $this->subscriptionRepository->findByProduct($product, $user);
+        $subscriptions = $repo->findByProduct($product, $user);
 
         // Check that subscriptions collection are a valid objects
         foreach ($subscriptions as $activeSubscription) {
@@ -105,19 +102,19 @@ class SubscriptionManager
      * @throws SubscriptionStatusException
      * @throws ProductDefaultNotFoundException
      */
-    public function activate(SubscriptionInterface $subscription, $isRenew = false)
+    public function activate(SubscriptionInterface $subscription, $isRenew = false): void
     {
         $this->checkSubscriptionIntegrity($subscription);
         $this->checkSubscriptionNonActive($subscription);
 
-        $strategy     = $this->getStrategyFromSubscription($subscription);
+        $strategy = $this->getStrategyFromSubscription($subscription);
         $finalProduct = $strategy->getProductStrategy()->getFinalProduct($subscription->getProduct());
 
         $subscription->setProduct($finalProduct);
         $subscription->activate();
 
         $subscriptionEvent = new SubscriptionEvent($subscription, $isRenew);
-        $this->eventDispatcher->dispatch(SubscriptionEvents::ACTIVATE_SUBSCRIPTION, $subscriptionEvent);
+        $this->eventDispatcher->dispatch(SubscriptionEvent::ACTIVATE_SUBSCRIPTION, $subscriptionEvent);
     }
 
     /**
@@ -125,7 +122,7 @@ class SubscriptionManager
      *
      * @param SubscriptionInterface $subscription
      *
-     * @return SubscriptionInterface New
+     * @return SubscriptionInterface
      *
      * @throws SubscriptionIntegrityException
      * @throws SubscriptionRenewalException
@@ -134,7 +131,7 @@ class SubscriptionManager
      * @throws PermanentSubscriptionException
      * @throws SubscriptionStatusException
      */
-    public function renew(SubscriptionInterface $subscription)
+    public function renew(SubscriptionInterface $subscription): SubscriptionInterface
     {
         $this->checkSubscriptionIntegrity($subscription);
         $this->checkSubscriptionRenewable($subscription);
@@ -145,8 +142,8 @@ class SubscriptionManager
 
         // Get the next renewal product
         $renewalProduct = $this->getRenewalProduct($subscription->getProduct());
-        $strategy       = $this->getStrategyFromSubscription($subscription);
-        $finalProduct   = $strategy->getProductStrategy()->getFinalProduct($renewalProduct);
+        $strategy = $this->getStrategyFromSubscription($subscription);
+        $finalProduct = $strategy->getProductStrategy()->getFinalProduct($renewalProduct);
 
         // Create new subscription (following the way of expired subscription)
         $newSubscription = $this->create($finalProduct, $subscription->getUser(), $finalProduct->getStrategyCodeName());
@@ -156,7 +153,7 @@ class SubscriptionManager
         $this->activate($newSubscription, true);
 
         $subscriptionEvent = new SubscriptionEvent($newSubscription);
-        $this->eventDispatcher->dispatch(SubscriptionEvents::RENEW_SUBSCRIPTION, $subscriptionEvent);
+        $this->eventDispatcher->dispatch(SubscriptionEvent::RENEW_SUBSCRIPTION, $subscriptionEvent);
 
         return $newSubscription;
     }
@@ -168,7 +165,7 @@ class SubscriptionManager
      *
      * @return ProductInterface
      */
-    protected function getRenewalProduct(ProductInterface $product)
+    protected function getRenewalProduct(ProductInterface $product): ProductInterface
     {
         if (null === $product->getNextRenewalProduct()) {
             return $product;
@@ -184,13 +181,13 @@ class SubscriptionManager
      * @param string                $reason The reason codename that you want set into the subscription
      * @param boolean               $isRenew
      */
-    public function expire(SubscriptionInterface $subscription, $reason = 'expire', $isRenew = false)
+    public function expire(SubscriptionInterface $subscription, $reason = 'expire', $isRenew = false): void
     {
-        $subscription->setReason($this->config['reasons'][$reason]);
+        $subscription->setReason($this->config->getReason($reason));
         $subscription->deactivate();
 
         $subscriptionEvent = new SubscriptionEvent($subscription, $isRenew);
-        $this->eventDispatcher->dispatch(SubscriptionEvents::EXPIRE_SUBSCRIPTION, $subscriptionEvent);
+        $this->eventDispatcher->dispatch(SubscriptionEvent::EXPIRE_SUBSCRIPTION, $subscriptionEvent);
     }
 
     /**
@@ -198,13 +195,13 @@ class SubscriptionManager
      *
      * @param SubscriptionInterface $subscription
      */
-    public function disable(SubscriptionInterface $subscription)
+    public function disable(SubscriptionInterface $subscription): void
     {
-        $subscription->setReason($this->config['reasons']['disable']);
+        $subscription->setReason($this->config->getReason('disable'));
         $subscription->deactivate();
 
         $subscriptionEvent = new SubscriptionEvent($subscription);
-        $this->eventDispatcher->dispatch(SubscriptionEvents::DISABLE_SUBSCRIPTION, $subscriptionEvent);
+        $this->eventDispatcher->dispatch(SubscriptionEvent::DISABLE_SUBSCRIPTION, $subscriptionEvent);
     }
 
     /**
@@ -216,11 +213,11 @@ class SubscriptionManager
      *
      * @throws StrategyNotFoundException
      */
-    private function getStrategyFromSubscription(SubscriptionInterface $subscription)
+    protected function getStrategyFromSubscription(SubscriptionInterface $subscription): SubscriptionStrategyInterface
     {
         $strategyName = $subscription->getStrategy();
 
-        return $this->registry->get($strategyName);
+        return $this->subscriptionRegistry->get($strategyName);
     }
 
     /**
@@ -230,7 +227,7 @@ class SubscriptionManager
      *
      * @throws SubscriptionIntegrityException
      */
-    private function checkSubscriptionIntegrity(SubscriptionInterface $subscription)
+    protected function checkSubscriptionIntegrity(SubscriptionInterface $subscription): void
     {
         if (null === $subscription->getProduct()) {
             throw new SubscriptionIntegrityException('Subscription must have a product defined.');
@@ -248,7 +245,7 @@ class SubscriptionManager
      *
      * @throws SubscriptionRenewalException
      */
-    private function checkSubscriptionRenewable(SubscriptionInterface $subscription)
+    protected function checkSubscriptionRenewable(SubscriptionInterface $subscription): void
     {
         if (null === $subscription->getEndDate()) {
             throw new SubscriptionRenewalException('A permanent subscription can not be renewed.');
@@ -271,7 +268,7 @@ class SubscriptionManager
      *
      * @throws SubscriptionStatusException
      */
-    private function checkSubscriptionNonActive(SubscriptionInterface $subscription)
+    protected function checkSubscriptionNonActive(SubscriptionInterface $subscription): void
     {
         if (!$subscription->isActive()) {
             return;
@@ -285,7 +282,7 @@ class SubscriptionManager
      *
      * @throws SubscriptionStatusException
      */
-    private function checkSubscriptionActive(SubscriptionInterface $subscription)
+    protected function checkSubscriptionActive(SubscriptionInterface $subscription): void
     {
         if ($subscription->isActive()) {
             return;

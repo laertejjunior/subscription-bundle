@@ -1,15 +1,17 @@
 <?php
 
-namespace Terox\SubscriptionBundle\DependencyInjection;
+namespace Shapecode\SubscriptionBundle\DependencyInjection;
 
+use Shapecode\SubscriptionBundle\Strategy\ProductDefaultStrategy;
+use Shapecode\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use Terox\SubscriptionBundle\TeroxSubscriptionBundle;
 
 /**
- * This is the class that validates and merges configuration from your app/config files.
+ * Class Configuration
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/configuration.html}
+ * @package Shapecode\SubscriptionBundle\DependencyInjection
+ * @author  Nikita Loges
  */
 class Configuration implements ConfigurationInterface
 {
@@ -19,20 +21,29 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('terox_subscription');
+        $rootNode    = $treeBuilder->root('shapecode_subscription');
 
         $rootNode
             ->children()
                 ->scalarNode('subscription_class')
+                    ->defaultValue('App/Entity/Subscription')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('product_class')
+                    ->defaultValue('App/Entity/Product')
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
 
-                ->scalarNode('subscription_repository')
+                ->scalarNode('default_product_strategy')
+                    ->defaultValue('default')
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
-                ->scalarNode('product_repository')
+
+                ->scalarNode('default_subscription_strategy')
+                    ->defaultValue('end_last')
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()

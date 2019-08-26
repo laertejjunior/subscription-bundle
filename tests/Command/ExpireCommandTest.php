@@ -1,11 +1,10 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Tests\Command;
+namespace Shapecode\SubscriptionBundle\Tests\Command;
 
+use Shapecode\SubscriptionBundle\Command\AbstractCommand;
+use Shapecode\SubscriptionBundle\Command\ExpireCommand;
 use Symfony\Component\Console\Tester\CommandTester;
-use Terox\SubscriptionBundle\Command\AbstractCommand;
-use Terox\SubscriptionBundle\Command\ExpireCommand;
-use Terox\SubscriptionBundle\TeroxSubscriptionBundle;
 
 class ExpireCommandTest extends CommandTestCase
 {
@@ -15,15 +14,15 @@ class ExpireCommandTest extends CommandTestCase
         $application->add(new ExpireCommand());
 
         /** @var AbstractCommand $command */
-        $command = $application->find(TeroxSubscriptionBundle::COMMAND_NAMESPACE.':expire');
+        $command = $application->find('shapecode:subscription:expire');
         $command->setContainer($this->getMockContainer());
 
         $commandTester = new CommandTester($command);
-        $commandTester->execute(array(
-            'command'  => $command->getName(),
-            'id'       => 1,
-            'reason'   => 'testing reason'
-        ));
+        $commandTester->execute([
+            'command' => $command->getName(),
+            'id'      => 1,
+            'reason'  => 'testing reason',
+        ]);
 
         $output = $commandTester->getDisplay();
         $this->assertContains('Expired subscription', $output);

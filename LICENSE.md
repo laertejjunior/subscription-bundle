@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) David Pérez Terol
+Copyright (c) Nikita Loges
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

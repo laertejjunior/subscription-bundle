@@ -1,12 +1,13 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Repository;
+namespace Shapecode\SubscriptionBundle\Repository;
 
+use Doctrine\Common\Persistence\ObjectRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Terox\SubscriptionBundle\Model\ProductInterface;
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 
-interface SubscriptionRepositoryInterface
+interface SubscriptionRepositoryInterface extends ObjectRepository
 {
     /**
      * Get number of subscriptions with associated product without regard to the state.

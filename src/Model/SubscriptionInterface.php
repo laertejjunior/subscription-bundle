@@ -1,6 +1,6 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Model;
+namespace Shapecode\SubscriptionBundle\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 

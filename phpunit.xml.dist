@@ -13,7 +13,7 @@
 >
 
     <testsuites>
-        <testsuite name="TeroxSubscriptionBundle test suite">
+        <testsuite name="ShapecodeSubscriptionBundle test suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

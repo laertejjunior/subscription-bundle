@@ -1,31 +1,48 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Strategy;
+namespace Shapecode\SubscriptionBundle\Strategy;
 
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Subscription\ProductRegistry;
+use shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
+use Shapecode\SubscriptionBundle\Subscription\SubscriptionRegistry;
 
+/**
+ * Class AbstractSubscriptionStrategy
+ *
+ * @package Shapecode\SubscriptionBundle\Strategy
+ * @author  Nikita Loges
+ */
 abstract class AbstractSubscriptionStrategy implements SubscriptionStrategyInterface
 {
-    /**
-     * @var string
-     */
-    private $subscriptionClass;
+    /** @var SubscriptionConfig */
+    protected $config;
+
+    /** @var SubscriptionRegistry */
+    protected $subscriptionRegistry;
+
+    /** @var ProductRegistry */
+    protected $productRegistry;
+
+    /** @var ProductStrategyInterface */
+    protected $productStrategy;
 
     /**
-     * @var AbstractProductStrategy
+     * @param SubscriptionConfig            $config
+     * @param SubscriptionRegistry          $subscriptionRegistry
+     * @param ProductRegistry               $productRegistry
+     * @param ProductStrategyInterface|null $productStrategy
      */
-    private $productStrategy;
-
-    /**
-     * Constructor.
-     *
-     * @param string                  $subscriptionClass
-     * @param AbstractProductStrategy $productStrategy
-     */
-    public function __construct($subscriptionClass, AbstractProductStrategy $productStrategy)
-    {
-        $this->subscriptionClass = $subscriptionClass;
-        $this->productStrategy   = $productStrategy;
+    public function __construct(
+        SubscriptionConfig $config,
+        SubscriptionRegistry $subscriptionRegistry,
+        ProductRegistry $productRegistry,
+        ProductStrategyInterface $productStrategy = null
+    ) {
+        $this->config = $config;
+        $this->subscriptionRegistry = $subscriptionRegistry;
+        $this->productRegistry = $productRegistry;
+        $this->productStrategy = $productStrategy;
     }
 
     /**
@@ -33,15 +50,19 @@ abstract class AbstractSubscriptionStrategy implements SubscriptionStrategyInter
      */
     public function createSubscriptionInstance()
     {
-        return new $this->subscriptionClass();
+        $class = $this->config->getSubscriptionClass();
+
+        return new $class();
     }
 
     /**
-     * @return AbstractProductStrategy
+     * @return ProductStrategyInterface
+     *
+     * @throws \Shapecode\SubscriptionBundle\Exception\StrategyNotFoundException
      */
-    public function getProductStrategy()
+    public function getProductStrategy(): ProductStrategyInterface
     {
-        return $this->productStrategy;
+        return $this->productStrategy ?? $this->productRegistry->getDefault($this->config->getDefaultProductStrategy());
     }
 
     /**

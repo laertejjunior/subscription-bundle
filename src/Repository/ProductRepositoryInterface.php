@@ -1,10 +1,11 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Repository;
+namespace Shapecode\SubscriptionBundle\Repository;
 
-use Terox\SubscriptionBundle\Model\ProductInterface;
+use Doctrine\Common\Persistence\ObjectRepository;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
 
-interface ProductRepositoryInterface
+interface ProductRepositoryInterface extends ObjectRepository
 {
     /**
      * Find a default product.

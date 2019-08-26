@@ -1,18 +1,18 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Tests\Subscription;
+namespace Shapecode\SubscriptionBundle\Tests\Subscription;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Terox\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Terox\SubscriptionBundle\Exception\SubscriptionRenewalException;
-use Terox\SubscriptionBundle\Model\ProductInterface;
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
-use Terox\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
-use Terox\SubscriptionBundle\Registry\SubscriptionRegistry;
-use Terox\SubscriptionBundle\Subscription\SubscriptionManager;
-use Terox\SubscriptionBundle\Tests\AbstractTestCaseBase;
-use Terox\SubscriptionBundle\Tests\Mock\SubscriptionMock;
-use Terox\SubscriptionBundle\Tests\Mock\UserMock;
+use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Shapecode\SubscriptionBundle\Exception\SubscriptionRenewalException;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
+use Shapecode\SubscriptionBundle\Registry\SubscriptionRegistry;
+use Shapecode\SubscriptionBundle\Subscription\SubscriptionManager;
+use Shapecode\SubscriptionBundle\Tests\AbstractTestCaseBase;
+use Shapecode\SubscriptionBundle\Tests\Mock\SubscriptionMock;
+use Shapecode\SubscriptionBundle\Tests\Mock\UserMock;
 
 class SubscriptionManagerTest extends AbstractTestCaseBase
 {

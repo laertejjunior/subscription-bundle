@@ -1,10 +1,10 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Tests\Mock;
+namespace Shapecode\SubscriptionBundle\Tests\Mock;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-use Terox\SubscriptionBundle\Model\ProductInterface;
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 
 class SubscriptionMock implements SubscriptionInterface
 {

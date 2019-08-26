@@ -1,11 +1,10 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Tests\Command;
+namespace Shapecode\SubscriptionBundle\Tests\Command;
 
+use Shapecode\SubscriptionBundle\Command\AbstractCommand;
+use Shapecode\SubscriptionBundle\Command\DisableCommand;
 use Symfony\Component\Console\Tester\CommandTester;
-use Terox\SubscriptionBundle\Command\AbstractCommand;
-use Terox\SubscriptionBundle\Command\DisableCommand;
-use Terox\SubscriptionBundle\TeroxSubscriptionBundle;
 
 class DisableCommandTest extends CommandTestCase
 {
@@ -15,14 +14,14 @@ class DisableCommandTest extends CommandTestCase
         $application->add(new DisableCommand());
 
         /** @var AbstractCommand $command */
-        $command = $application->find(TeroxSubscriptionBundle::COMMAND_NAMESPACE.':disable');
+        $command = $application->find('shapecode:subscription:disable');
         $command->setContainer($this->getMockContainer());
 
         $commandTester = new CommandTester($command);
-        $commandTester->execute(array(
-            'command'  => $command->getName(),
-            'id'       => 1
-        ));
+        $commandTester->execute([
+            'command' => $command->getName(),
+            'id'      => 1,
+        ]);
 
         $output = $commandTester->getDisplay();
         $this->assertContains('Disabled subscription', $output);

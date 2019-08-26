@@ -1,23 +1,23 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Strategy;
+namespace Shapecode\SubscriptionBundle\Strategy;
 
-use Terox\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Terox\SubscriptionBundle\Model\ProductInterface;
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 
 /**
- * End Last Subscription Strategy.
+ * Class SubscriptionEndLastStrategy
  *
- * Starts a new subscription at the end of the latest if there isn't any permanent subscription with the current
- * product.
+ * @package Shapecode\SubscriptionBundle\Strategy
+ * @author  Nikita Loges
  */
 class SubscriptionEndLastStrategy extends AbstractSubscriptionStrategy
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
-    public function createSubscription(ProductInterface $product, array $subscriptions = [])
+    public function createSubscription(ProductInterface $product, array $subscriptions = []): SubscriptionInterface
     {
         if (empty($subscriptions)) {
             return $this->create($this->createCurrentDate(), $product);
@@ -52,7 +52,7 @@ class SubscriptionEndLastStrategy extends AbstractSubscriptionStrategy
         }
 
         // Check if subscription is expired
-        if (time() > $startDate->getTimestamp()) {
+        if ($startDate !== null && time() > $startDate->getTimestamp()) {
             $startDate = $this->createCurrentDate();
         }
 
@@ -72,7 +72,7 @@ class SubscriptionEndLastStrategy extends AbstractSubscriptionStrategy
      *
      * @return SubscriptionInterface
      */
-    private function create($startDate, $product)
+    private function create($startDate, $product): SubscriptionInterface
     {
         $endDate = null !== $product->getDuration() ?
             $startDate->modify(sprintf('+%s seconds', $product->getDuration())) : null;
@@ -85,5 +85,13 @@ class SubscriptionEndLastStrategy extends AbstractSubscriptionStrategy
         $subscription->setAutoRenewal($product->isAutoRenewal());
 
         return $subscription;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getShortName(): string
+    {
+        return 'end_last';
     }
 }

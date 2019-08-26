@@ -1,15 +1,15 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Tests\Strategy;
+namespace Shapecode\SubscriptionBundle\Tests\Strategy;
 
 use PHPUnit\Framework\TestCase;
-use Terox\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Terox\SubscriptionBundle\Model\ProductInterface;
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
-use Terox\SubscriptionBundle\Strategy\ProductDefaultStrategy;
-use Terox\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
-use Terox\SubscriptionBundle\Tests\AbstractTestCaseBase;
-use Terox\SubscriptionBundle\Tests\Mock\SubscriptionMock;
+use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Strategy\ProductDefaultStrategy;
+use Shapecode\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
+use Shapecode\SubscriptionBundle\Tests\AbstractTestCaseBase;
+use Shapecode\SubscriptionBundle\Tests\Mock\SubscriptionMock;
 
 class EndLastSubscriptionStrategyTest extends AbstractTestCaseBase
 {

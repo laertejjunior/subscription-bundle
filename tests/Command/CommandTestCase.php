@@ -1,12 +1,12 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Tests\Command;
+namespace Shapecode\SubscriptionBundle\Tests\Command;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
-use Terox\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
-use Terox\SubscriptionBundle\Subscription\SubscriptionManager;
-use Terox\SubscriptionBundle\Tests\Mock\SubscriptionMock;
+use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
+use Shapecode\SubscriptionBundle\Subscription\SubscriptionManager;
+use Shapecode\SubscriptionBundle\Tests\Mock\SubscriptionMock;
 
 class CommandTestCase extends TestCase
 {
@@ -39,12 +39,12 @@ class CommandTestCase extends TestCase
         $container
             ->shouldReceive('get')
             ->once()
-            ->with('terox.subscription.repository.subscription')
+            ->with('shapecode.subscription.repository.subscription')
             ->andReturn($repository);
 
         $container
             ->shouldReceive('get')
-            ->with('terox.subscription.manager')
+            ->with('shapecode.subscription.manager')
             ->andReturn($manager);
 
         return $container;

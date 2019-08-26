@@ -1,6 +1,6 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Tests\Mock;
+namespace Shapecode\SubscriptionBundle\Tests\Mock;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 

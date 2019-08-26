@@ -1,20 +1,20 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Tests;
+namespace Shapecode\SubscriptionBundle\Tests;
 
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
-use Terox\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Terox\SubscriptionBundle\Model\ProductInterface;
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
-use Terox\SubscriptionBundle\Repository\ProductRepositoryInterface;
-use Terox\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
-use Terox\SubscriptionBundle\Strategy\ProductDefaultStrategy;
-use Terox\SubscriptionBundle\Strategy\ProductStrategyInterface;
-use Terox\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
-use Terox\SubscriptionBundle\Registry\SubscriptionRegistry;
-use Terox\SubscriptionBundle\Tests\Mock\SubscriptionMock;
-use Terox\SubscriptionBundle\Tests\Mock\UserMock;
+use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface;
+use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
+use Shapecode\SubscriptionBundle\Strategy\ProductDefaultStrategy;
+use Shapecode\SubscriptionBundle\Strategy\ProductStrategyInterface;
+use Shapecode\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
+use Shapecode\SubscriptionBundle\Registry\SubscriptionRegistry;
+use Shapecode\SubscriptionBundle\Tests\Mock\SubscriptionMock;
+use Shapecode\SubscriptionBundle\Tests\Mock\UserMock;
 
 abstract class AbstractTestCaseBase extends TestCase
 {

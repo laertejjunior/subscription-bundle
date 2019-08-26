@@ -1,12 +1,17 @@
 services:
-    terox.subscription.registry:
-        class: Terox\SubscriptionBundle\Registry\SubscriptionRegistry
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $config: '%shapecode_subscription.config%'
 
-    terox.subscription.manager:
-        class: Terox\SubscriptionBundle\Subscription\SubscriptionManager
-        public: true
-        arguments:
-            - "@terox.subscription.registry"
-            - "@terox.subscription.repository.subscription"
-            - "@event_dispatcher"
-            - "%terox_subscription.config%"
+    # trader
+    Shapecode\SubscriptionBundle\Command\:
+        resource: '../src/Command/*'
+
+    Shapecode\SubscriptionBundle\Subscription\:
+        resource: '../src/Subscription/*'
+
+    Shapecode\SubscriptionBundle\Strategy\:
+        resource: '../src/Strategy/*'

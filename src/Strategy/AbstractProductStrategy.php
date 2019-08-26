@@ -1,48 +1,42 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Strategy;
+namespace Shapecode\SubscriptionBundle\Strategy;
 
-use Monolog\Logger;
-use Terox\SubscriptionBundle\Exception\ProductExpiredException;
-use Terox\SubscriptionBundle\Exception\ProductIntegrityException;
-use Terox\SubscriptionBundle\Exception\ProductQuoteExceededException;
-use Terox\SubscriptionBundle\Model\ProductInterface;
-use Terox\SubscriptionBundle\Repository\ProductRepositoryInterface;
-use Terox\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
+use Shapecode\SubscriptionBundle\Exception\ProductExpiredException;
+use Shapecode\SubscriptionBundle\Exception\ProductIntegrityException;
+use Shapecode\SubscriptionBundle\Exception\ProductQuoteExceededException;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface;
+use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
+use Shapecode\SubscriptionBundle\Subscription\ProductRegistry;
+use shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
+use Shapecode\SubscriptionBundle\Subscription\SubscriptionRegistry;
 
 abstract class AbstractProductStrategy implements ProductStrategyInterface
 {
-    /**
-     * @var ProductRepositoryInterface
-     */
-    private $productRepository;
+
+    /** @var SubscriptionConfig */
+    protected $config;
+
+    /** @var SubscriptionRegistry */
+    protected $subscriptionRegistry;
+
+    /** @var ProductRegistry */
+    protected $productRegistry;
 
     /**
-     * @var SubscriptionRepositoryInterface
-     */
-    private $subscriptionRepository;
-
-    /**
-     * @var Logger
-     */
-    private $logger;
-
-    /**
-     * Constructor.
-     *
-     * @param ProductRepositoryInterface      $productRepository
-     * @param SubscriptionRepositoryInterface $subscriptionRepository
-     * @param Logger                          $logger
+     * @param SubscriptionConfig   $config
+     * @param SubscriptionRegistry $subscriptionRegistry
+     * @param ProductRegistry      $productRegistry
      */
     public function __construct(
-        ProductRepositoryInterface $productRepository,
-        SubscriptionRepositoryInterface $subscriptionRepository,
-        Logger $logger
-    )
-    {
-        $this->productRepository      = $productRepository;
-        $this->subscriptionRepository = $subscriptionRepository;
-        $this->logger                 = $logger;
+        SubscriptionConfig $config,
+        SubscriptionRegistry $subscriptionRegistry,
+        ProductRegistry $productRegistry
+    ) {
+        $this->config = $config;
+        $this->subscriptionRegistry = $subscriptionRegistry;
+        $this->productRegistry = $productRegistry;
     }
 
     /**
@@ -50,7 +44,7 @@ abstract class AbstractProductStrategy implements ProductStrategyInterface
      */
     protected function getProductRepository()
     {
-        return $this->productRepository;
+        return $this->config->getProductRepository();
     }
 
     /**
@@ -58,15 +52,7 @@ abstract class AbstractProductStrategy implements ProductStrategyInterface
      */
     protected function getSubscriptionRepository()
     {
-        return $this->subscriptionRepository;
-    }
-
-    /**
-     * @return Logger
-     */
-    protected function getLogger()
-    {
-        return $this->logger;
+        return $this->config->getSubscriptionRepository();
     }
 
     /**
@@ -76,7 +62,7 @@ abstract class AbstractProductStrategy implements ProductStrategyInterface
      *
      * @throws ProductIntegrityException
      */
-    final public function checkProductIntegrity(ProductInterface $product)
+    final public function checkProductIntegrity(ProductInterface $product): void
     {
         if ($product->isDefault() && null !== $product->getQuota()) {
 
@@ -106,7 +92,7 @@ abstract class AbstractProductStrategy implements ProductStrategyInterface
      *
      * @throws ProductExpiredException
      */
-    public function checkExpiration(ProductInterface $product)
+    public function checkExpiration(ProductInterface $product): void
     {
         $expirationDate = $product->getExpirationDate();
 
@@ -128,7 +114,7 @@ abstract class AbstractProductStrategy implements ProductStrategyInterface
      *
      * @throws ProductQuoteExceededException
      */
-    public function checkQuote(ProductInterface $product)
+    public function checkQuote(ProductInterface $product): void
     {
         // Unlimited quote
         if (null === $product->getQuota()) {
@@ -136,7 +122,7 @@ abstract class AbstractProductStrategy implements ProductStrategyInterface
         }
 
         // Calculate the current quote
-        $currentQuote = $this->subscriptionRepository->getNumberOfSubscriptionsByProducts($product);
+        $currentQuote = $this->getSubscriptionRepository()->getNumberOfSubscriptionsByProducts($product);
 
         if ($currentQuote < $product->getQuota()) {
             return;

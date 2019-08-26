@@ -1,10 +1,9 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Command;
+namespace Shapecode\SubscriptionBundle\Command;
 
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 use Symfony\Component\Console\Input\InputArgument;
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
-use Terox\SubscriptionBundle\TeroxSubscriptionBundle;
 
 class ExpireCommand extends AbstractCommand
 {
@@ -15,21 +14,20 @@ class ExpireCommand extends AbstractCommand
     {
         parent::configure();
 
-        $this
-            ->setName(TeroxSubscriptionBundle::COMMAND_NAMESPACE.':expire')
-            ->setDescription('Expire a subscription')
-            ->addArgument(
-                'reason',
-                InputArgument::OPTIONAL,
-                'Reason of expiration',
-                'expired'
-            );
+        $this->setName('shapecode:subscription:expire');
+        $this->setDescription('Expire a subscription');
+        $this->addArgument(
+            'reason',
+            InputArgument::OPTIONAL,
+            'Reason of expiration',
+            'expired'
+        );
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function action(SubscriptionInterface $subscription)
+    protected function action(SubscriptionInterface $subscription): void
     {
         $reason = $this->input->getArgument('reason');
 

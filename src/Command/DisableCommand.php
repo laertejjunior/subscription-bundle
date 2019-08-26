@@ -1,9 +1,8 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Command;
+namespace Shapecode\SubscriptionBundle\Command;
 
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
-use Terox\SubscriptionBundle\TeroxSubscriptionBundle;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 
 class DisableCommand extends AbstractCommand
 {
@@ -14,15 +13,14 @@ class DisableCommand extends AbstractCommand
     {
         parent::configure();
 
-        $this
-            ->setName(TeroxSubscriptionBundle::COMMAND_NAMESPACE.':disable')
-            ->setDescription('Disable a subscription');
+        $this->setName('shapecode:subscription:disable');
+        $this->setDescription('Disable a subscription');
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function action(SubscriptionInterface $subscription)
+    protected function action(SubscriptionInterface $subscription): void
     {
         $this->getManager()->disable($subscription);
 

@@ -1,19 +1,25 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Strategy;
+namespace Shapecode\SubscriptionBundle\Strategy;
 
-use Terox\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
-use Terox\SubscriptionBundle\Exception\ProductExpiredException;
-use Terox\SubscriptionBundle\Exception\ProductIntegrityException;
-use Terox\SubscriptionBundle\Exception\ProductQuoteExceededException;
-use Terox\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
+use Shapecode\SubscriptionBundle\Exception\ProductExpiredException;
+use Shapecode\SubscriptionBundle\Exception\ProductIntegrityException;
+use Shapecode\SubscriptionBundle\Exception\ProductQuoteExceededException;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
 
+/**
+ * Class ProductDefaultStrategy
+ *
+ * @package Shapecode\SubscriptionBundle\Strategy
+ * @author  Nikita Loges
+ */
 class ProductDefaultStrategy extends AbstractProductStrategy
 {
     /**
      * {@inheritdoc}
      */
-    public function getFinalProduct(ProductInterface $product)
+    public function getFinalProduct(ProductInterface $product): ProductInterface
     {
         try {
 
@@ -24,22 +30,22 @@ class ProductDefaultStrategy extends AbstractProductStrategy
             return $product;
 
         } catch (ProductIntegrityException $exception) {
-
-            $this->getLogger()->error('Product integrity: {message}', [
-                'message' => $exception->getMessage()
-            ]);
+//
+//            $this->getLogger()->error('Product integrity: {message}', [
+//                'message' => $exception->getMessage(),
+//            ]);
 
         } catch (ProductExpiredException $exception) {
-
-            $this->getLogger()->error('Product is expired: {message}', [
-                'message' => $exception->getMessage()
-            ]);
+//
+//            $this->getLogger()->error('Product is expired: {message}', [
+//                'message' => $exception->getMessage(),
+//            ]);
 
         } catch (ProductQuoteExceededException $exception) {
-
-            $this->getLogger()->error('Product quota is exceeded: {message}', [
-                'message' => $exception->getMessage()
-            ]);
+//
+//            $this->getLogger()->error('Product quota is exceeded: {message}', [
+//                'message' => $exception->getMessage(),
+//            ]);
 
         }
 
@@ -53,7 +59,7 @@ class ProductDefaultStrategy extends AbstractProductStrategy
      *
      * @throws ProductDefaultNotFoundException
      */
-    private function getDefaultProduct()
+    private function getDefaultProduct(): ProductInterface
     {
         $defaultProduct = $this->getProductRepository()->findDefault();
 
@@ -62,5 +68,13 @@ class ProductDefaultStrategy extends AbstractProductStrategy
         }
 
         throw new ProductDefaultNotFoundException('Default product was not found into the product repository');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getShortName(): string
+    {
+        return 'default';
     }
 }

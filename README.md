@@ -1,10 +1,14 @@
-SubscriptionBundle
-[![Build Status](https://travis-ci.org/terox/SubscriptionBundle.svg?branch=master)](https://travis-ci.org/terox/SubscriptionBundle)
-[![Code Coverage](https://scrutinizer-ci.com/g/terox/SubscriptionBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/terox/SubscriptionBundle/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/terox/SubscriptionBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/terox/SubscriptionBundle/?branch=master)
-==================
+Shapecode - Subscription Bundle
+=======================
+[![paypal](https://img.shields.io/badge/Donate-Paypal-blue.svg)](http://paypal.me/nloges)
 
-<img src="https://raw.githubusercontent.com/terox/SubscriptionBundle/master/doc/images/SubscriptionBundleLogo.png" alt="SubscriptionBundleLogo" width="242" height="212" align="right">
+[![PHP Version](https://img.shields.io/packagist/php-v/shapecode/subscription-bundle.svg)](https://packagist.org/packages/shapecode/subscription-bundle)
+[![Latest Stable Version](https://img.shields.io/packagist/v/shapecode/subscription-bundle.svg?label=stable)](https://packagist.org/packages/shapecode/subscription-bundle)
+[![Latest Unstable Version](https://img.shields.io/packagist/vpre/shapecode/subscription-bundle.svg?label=unstable)](https://packagist.org/packages/shapecode/subscription-bundle)
+[![Total Downloads](https://img.shields.io/packagist/dt/shapecode/subscription-bundle.svg)](https://packagist.org/packages/shapecode/subscription-bundle)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/shapecode/subscription-bundle.svg)](https://packagist.org/packages/shapecode/subscription-bundle)
+[![Daily Downloads](https://img.shields.io/packagist/dd/shapecode/subscription-bundle.svg)](https://packagist.org/packages/shapecode/subscription-bundle)
+[![License](https://img.shields.io/packagist/l/shapecode/subscription-bundle.svg)](https://packagist.org/packages/shapecode/subscription-bundle)
 
 > SubscriptionBundle helps you to create and manage subscriptions services (also known as plans) for your users in your application.
 
@@ -25,22 +29,22 @@ Documentation
 -------------
 
 * [Quick Start](#quick-start)
-* [Guide](https://github.com/terox/SubscriptionBundle/blob/master/doc/Guide.md)
+* [Guide](https://github.com/shapecode/subscription-bundle/blob/master/doc/Guide.md)
 * Strategies
     * Product strategies:
-        * [What is a product strategy](https://github.com/terox/SubscriptionBundle/blob/master/doc/WhatIsProductStrategy.md)
-        * [How to create a product strategy](https://github.com/terox/SubscriptionBundle/blob/master/doc/HowToCreateAProductStrategy.md])
-        * [Out-of-the-box strategies](https://github.com/terox/SubscriptionBundle/blob/master/doc/strategies/product):
-            * [Default product strategy](https://github.com/terox/SubscriptionBundle/blob/master/doc/strategies/product/DefaultStrategy.md)
+        * [What is a product strategy](https://github.com/shapecode/subscription-bundle/blob/master/doc/WhatIsProductStrategy.md)
+        * [How to create a product strategy](https://github.com/shapecode/subscription-bundle/blob/master/doc/HowToCreateAProductStrategy.md])
+        * [Out-of-the-box strategies](https://github.com/shapecode/subscription-bundle/blob/master/doc/strategies/product):
+            * [Default product strategy](https://github.com/shapecode/subscription-bundle/blob/master/doc/strategies/product/DefaultStrategy.md)
             
     * Subscription strategies:
-        * [What is a subscription strategy](https://github.com/terox/SubscriptionBundle/blob/master/doc/WhatIsAProductStrategy.md)
-        * [How to create a subscription strategy](https://github.com/terox/SubscriptionBundle/blob/master/doc/HowToCreateASubscriptionStrategy.md)
-        * [Out-of-the-box strategies](https://github.com/terox/SubscriptionBundle/blob/master/doc/strategies/subscription):
-            * [End Last Strategy](https://github.com/terox/SubscriptionBundle/blob/master/doc/strategies/subscription/EndLastStrategy.md)
+        * [What is a subscription strategy](https://github.com/shapecode/subscription-bundle/blob/master/doc/WhatIsAProductStrategy.md)
+        * [How to create a subscription strategy](https://github.com/shapecode/subscription-bundle/blob/master/doc/HowToCreateASubscriptionStrategy.md)
+        * [Out-of-the-box strategies](https://github.com/shapecode/subscription-bundle/blob/master/doc/strategies/subscription):
+            * [End Last Strategy](https://github.com/shapecode/subscription-bundle/blob/master/doc/strategies/subscription/EndLastStrategy.md)
 
 * CookBooks/Examples:
-    * [Symfony 4 example sandbox](https://github.com/terox/sf4-subscription-example) with doctrine
+    * [Symfony 4 example sandbox](https://github.com/shapecode/sf4-subscription-example) with doctrine
 
 Quick start
 -----------
@@ -48,7 +52,7 @@ Quick start
 ### 1. Download the bundle:
 
 ```bash
-$ composer require terox/subscription-bundle
+$ composer require shapecode/subscription-bundle
 ```
 
 ### 2. Enable the bundle in Symfony Application (only Symfony 3):
@@ -64,7 +68,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-            new Terox\SubscriptionBundle\TeroxSubscriptionBundle(),
+            new Shapecode\SubscriptionBundle\ShapecodeSubscriptionBundle(),
         );
     }
 
@@ -75,24 +79,29 @@ class AppKernel extends Kernel
 ### 3. Configure the bundle:
 
 ```yaml
-terox_subscription:
+shapecode_subscription:
     # Where is the subscription model located in your application
     # Remember that your model must implement the interface
-    subscription_class: AppBundle\Entity\Subscription # Interface: Terox\SubscriptionBundle\Model\SubscriptionInterface
+    subscription_class: AppBundle\Entity\Subscription # Interface: Shapecode\SubscriptionBundle\Model\SubscriptionInterface
 
     # Repository services name
     # Remember that repositories must be implement the interfaces
-    subscription_repository: app.repository.subscription # Interface: Terox\SubscriptionBundle\Repository\SubscriptionRepositoryInterface
-    product_repository: app.repository.product           # Interface: Terox\SubscriptionBundle\Repository\ProductRepositoryInterface
+    subscription_repository: app.repository.subscription # Interface: Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface
+    product_repository: app.repository.product           # Interface: Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface
 ```
-Read the [complete configuration reference](https://github.com/terox/SubscriptionBundle/blob/master/doc/ReferenceConfig.md) for more configuration options or tweaks.
+Read the [complete configuration reference](https://github.com/shapecode/subscription-bundle/blob/master/doc/ReferenceConfig.md) for more configuration options or tweaks.
 
 License
 -------
 
-This software is published under the [MIT License](https://github.com/terox/SubscriptionBundle/master/LICENSE.md)
+This software is published under the [MIT License](https://github.com/shapecode/subscription-bundle/master/LICENSE.md)
 
 Contributing
 ------------
 
 I will be very happy if you want to contribute fixing some issue, providing new strategies or whatever you want. Thanks!
+
+Info
+------------
+
+Porject forked from [terox/SubscriptionBundle](https://github.com/terox/SubscriptionBundle)

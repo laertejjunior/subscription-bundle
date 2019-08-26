@@ -1,10 +1,11 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Strategy;
+namespace Shapecode\SubscriptionBundle\Strategy;
 
-use Terox\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Terox\SubscriptionBundle\Model\ProductInterface;
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
+use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Shapecode\SubscriptionBundle\Exception\StrategyNotFoundException;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 
 interface SubscriptionStrategyInterface
 {
@@ -16,10 +17,17 @@ interface SubscriptionStrategyInterface
      *
      * @throws PermanentSubscriptionException
      */
-    public function createSubscription(ProductInterface $product, array $subscriptions = []);
+    public function createSubscription(ProductInterface $product, array $subscriptions = []): SubscriptionInterface;
 
     /**
      * @return ProductStrategyInterface
+     *
+     * @throws StrategyNotFoundException
      */
-    public function getProductStrategy();
+    public function getProductStrategy(): ProductStrategyInterface;
+
+    /**
+     * @return string
+     */
+    public function getShortName(): string;
 }

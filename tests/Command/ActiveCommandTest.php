@@ -1,11 +1,10 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Tests\Command;
+namespace Shapecode\SubscriptionBundle\Tests\Command;
 
+use Shapecode\SubscriptionBundle\Command\AbstractCommand;
+use Shapecode\SubscriptionBundle\Command\ActiveCommand;
 use Symfony\Component\Console\Tester\CommandTester;
-use Terox\SubscriptionBundle\Command\AbstractCommand;
-use Terox\SubscriptionBundle\Command\ActiveCommand;
-use Terox\SubscriptionBundle\TeroxSubscriptionBundle;
 
 class ActiveCommandTest extends CommandTestCase
 {
@@ -15,14 +14,14 @@ class ActiveCommandTest extends CommandTestCase
         $application->add(new ActiveCommand());
 
         /** @var AbstractCommand $command */
-        $command = $application->find(TeroxSubscriptionBundle::COMMAND_NAMESPACE.':active');
+        $command = $application->find('shapecode:subscription:active');
         $command->setContainer($this->getMockContainer());
 
         $commandTester = new CommandTester($command);
-        $commandTester->execute(array(
-            'command'  => $command->getName(),
-            'id'       => 1
-        ));
+        $commandTester->execute([
+            'command' => $command->getName(),
+            'id'      => 1,
+        ]);
 
         $output = $commandTester->getDisplay();
         $this->assertContains('Activated subscription', $output);

@@ -4,7 +4,7 @@ How to create a product strategy
 The structure of a product strategy is very simple as you are going to see.
 
 The **product strategy** is ***very related*** with **subscription strategy**. The fact, it is injected into [subscription
-strategy constructor](https://github.com/terox/SubscriptionBundle/blob/master/src/Strategy/AbstractProductStrategy.php#L38). 
+strategy constructor](https://github.com/shapecode/subscription-bundle/blob/master/src/Strategy/AbstractProductStrategy.php#L38). 
 That means that subscription can use the product strategy to perform some actions.
 
 ## Create your own product strategy:
@@ -18,8 +18,8 @@ Place your strategy file where you consider more suitable in your file structure
 
 namespace App\Strategy\Product;
 
-use Terox\SubscriptionBundle\Strategy\AbstractProductStrategy;
-use Terox\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Strategy\AbstractProductStrategy;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
 
 class MyProductStrategy extends AbstractProductStrategy
 {
@@ -43,10 +43,10 @@ class MyProductStrategy extends AbstractProductStrategy
 ````
 
 #### ❗ Remember:
-* Use in your product model the next interface: ***Terox\SubscriptionBundle\Model\ProductInterface***.
-* Use in your repositories the next interface: ***Terox\SubscriptionBundle\Repository\ProductRepositoryInterface***.
+* Use in your product model the next interface: ***Shapecode\SubscriptionBundle\Model\ProductInterface***.
+* Use in your repositories the next interface: ***Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface***.
 
-Both classes must be [configurated](https://github.com/terox/SubscriptionBundle/blob/master/doc/ReferenceConfig.md).
+Both classes must be [configurated](https://github.com/shapecode/subscription-bundle/blob/master/doc/ReferenceConfig.md).
 
 ### Declare the strategy into container:
 
@@ -55,7 +55,7 @@ This register the product strategy into the container.
 ```yaml
     app.strategy.my_product:
         class: App\Strategy\Product\MyProductStrategy
-        parent: terox.subscription.strategy.product.abstract
+        parent: shapecode.subscription.strategy.product.abstract
         tags:
             - { name: subscription.strategy, type: product, strategy: my_product }
 ```

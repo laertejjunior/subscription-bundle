@@ -1,9 +1,8 @@
 <?php
 
-namespace Terox\SubscriptionBundle\Command;
+namespace Shapecode\SubscriptionBundle\Command;
 
-use Terox\SubscriptionBundle\Model\SubscriptionInterface;
-use Terox\SubscriptionBundle\TeroxSubscriptionBundle;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 
 class ActiveCommand extends AbstractCommand
 {
@@ -14,17 +13,16 @@ class ActiveCommand extends AbstractCommand
     {
         parent::configure();
 
-        $this
-            ->setName(TeroxSubscriptionBundle::COMMAND_NAMESPACE.':active')
-            ->setDescription('Active a subscription a expired/disabled subscription');
+        $this->setName('shapecode:subscription:active');
+        $this->setDescription('Active a subscription a expired/disabled subscription');
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function action(SubscriptionInterface $subscription)
+    protected function action(SubscriptionInterface $subscription): void
     {
-        $this->getManager()->activate($subscription, false);
+        $this->getManager()->activate($subscription);
 
         $this->output->writeln(sprintf('Activated subscription'));
     }

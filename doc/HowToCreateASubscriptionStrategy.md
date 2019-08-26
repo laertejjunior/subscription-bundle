@@ -12,8 +12,8 @@ Place your strategy file where you consider more suitable in your file structure
 
 namespace App\Strategy\Subscription;
 
-use Terox\SubscriptionBundle\Strategy\AbstractSubscriptionStrategy;
-use Terox\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Strategy\AbstractSubscriptionStrategy;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
 
 class MyProductStrategy extends AbstractSubscriptionStrategy
 {
@@ -44,13 +44,13 @@ class MyProductStrategy extends AbstractSubscriptionStrategy
 }
 ````
 #### 📌 Tips:
-* Review the **[end_last](https://github.com/terox/SubscriptionBundle/blob/master/doc/strategies/subscription/EndLastStrategy.md)** strategy if your need help.
+* Review the **[end_last](https://github.com/shapecode/subscription-bundle/blob/master/doc/strategies/subscription/EndLastStrategy.md)** strategy if your need help.
 
 #### ❗ Remember:
-* Use in your subscription model the next interface: ***Terox\SubscriptionBundle\Model\SubscriptionInterface***.
-* Use in your repositories the next interface: ***Terox\SubscriptionBundle\Repository\SubscriptionRepositoryInterface***.
+* Use in your subscription model the next interface: ***Shapecode\SubscriptionBundle\Model\SubscriptionInterface***.
+* Use in your repositories the next interface: ***Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface***.
 
-Both classes must be [configurated](https://github.com/terox/SubscriptionBundle/blob/master/doc/ReferenceConfig.md).
+Both classes must be [configurated](https://github.com/shapecode/subscription-bundle/blob/master/doc/ReferenceConfig.md).
 
 ### Declare the strategy into container:
 
@@ -60,9 +60,9 @@ This register the subscription strategy into the container and register int into
     app.strategy.my_product:
         class: App\Strategy\Subscription\MyProductStrategy
         arguments:
-            - "%terox_subscription.config.subscription.class%"
+            - "%shapecode_subscription.config.subscription.class%"
             # Inject any other product strategy if you need:
-            - "@terox.subscription.strategy.product.default"
+            - "@shapecode.subscription.strategy.product.default"
         tags:
             - { name: subscription.strategy, type: subscription, strategy: my_subscription_strategy }
 ```
