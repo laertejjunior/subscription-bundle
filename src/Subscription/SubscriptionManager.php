@@ -3,7 +3,10 @@
 namespace Shapecode\SubscriptionBundle\Subscription;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Shapecode\SubscriptionBundle\Event\SubscriptionEvent;
+use Shapecode\SubscriptionBundle\Event\ActivateEvent;
+use Shapecode\SubscriptionBundle\Event\DisableEvent;
+use Shapecode\SubscriptionBundle\Event\ExpireEvent;
+use Shapecode\SubscriptionBundle\Event\RenewEvent;
 use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
 use Shapecode\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
 use Shapecode\SubscriptionBundle\Exception\StrategyNotFoundException;
@@ -113,8 +116,8 @@ class SubscriptionManager
         $subscription->setProduct($finalProduct);
         $subscription->activate();
 
-        $subscriptionEvent = new SubscriptionEvent($subscription, $isRenew);
-        $this->eventDispatcher->dispatch(SubscriptionEvent::ACTIVATE_SUBSCRIPTION, $subscriptionEvent);
+        $event = new ActivateEvent($subscription, $isRenew);
+        $this->eventDispatcher->dispatch(ActivateEvent::class, $event);
     }
 
     /**
@@ -152,8 +155,8 @@ class SubscriptionManager
         // Activate the next subscription
         $this->activate($newSubscription, true);
 
-        $subscriptionEvent = new SubscriptionEvent($newSubscription);
-        $this->eventDispatcher->dispatch(SubscriptionEvent::RENEW_SUBSCRIPTION, $subscriptionEvent);
+        $event = new RenewEvent($newSubscription);
+        $this->eventDispatcher->dispatch(RenewEvent::class, $event);
 
         return $newSubscription;
     }
@@ -186,8 +189,8 @@ class SubscriptionManager
         $subscription->setReason($this->config->getReason($reason));
         $subscription->deactivate();
 
-        $subscriptionEvent = new SubscriptionEvent($subscription, $isRenew);
-        $this->eventDispatcher->dispatch(SubscriptionEvent::EXPIRE_SUBSCRIPTION, $subscriptionEvent);
+        $event = new ExpireEvent($subscription, $isRenew);
+        $this->eventDispatcher->dispatch(ExpireEvent::class, $event);
     }
 
     /**
@@ -200,8 +203,8 @@ class SubscriptionManager
         $subscription->setReason($this->config->getReason('disable'));
         $subscription->deactivate();
 
-        $subscriptionEvent = new SubscriptionEvent($subscription);
-        $this->eventDispatcher->dispatch(SubscriptionEvent::DISABLE_SUBSCRIPTION, $subscriptionEvent);
+        $event = new DisableEvent($subscription);
+        $this->eventDispatcher->dispatch(DisableEvent::class, $event);
     }
 
     /**
