@@ -72,7 +72,7 @@ class SubscriptionEndLastStrategy extends AbstractSubscriptionStrategy
      *
      * @return SubscriptionInterface
      */
-    private function create($startDate, $product): SubscriptionInterface
+    protected function create($startDate, $product): SubscriptionInterface
     {
         $endDate = null !== $product->getDuration() ?
             $startDate->modify(sprintf('+%s seconds', $product->getDuration())) : null;

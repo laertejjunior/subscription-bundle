@@ -3,9 +3,10 @@
 namespace Shapecode\SubscriptionBundle\Repository;
 
 use Doctrine\Common\Persistence\ObjectRepository;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Shapecode\SubscriptionBundle\Model\ProductGroupInterface;
 use Shapecode\SubscriptionBundle\Model\ProductInterface;
 use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 interface SubscriptionRepositoryInterface extends ObjectRepository
 {
@@ -30,11 +31,13 @@ interface SubscriptionRepositoryInterface extends ObjectRepository
     public function findByProduct(ProductInterface $product, UserInterface $user, $active = true);
 
     /**
-     * Find subscription by his ID.
+     * Find subscriptions by product group and state.
      *
-     * @param int|string $id
+     * @param ProductGroupInterface $group
+     * @param UserInterface         $user
+     * @param boolean               $active
      *
-     * @return SubscriptionInterface|null
+     * @return SubscriptionInterface[]
      */
-    public function findById($id);
+    public function findByProductGroup(ProductGroupInterface $group, UserInterface $user, $active = true);
 }

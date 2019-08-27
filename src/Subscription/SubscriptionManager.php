@@ -82,11 +82,12 @@ class SubscriptionManager
         $repo = $this->config->getSubscriptionRepository();
 
         // Get current enabled subscriptions of product
-        $subscriptions = $repo->findByProduct($product, $user);
+        if ($product->getGroup()) {
+            $subscriptions = $repo->findByProductGroup($product->getGroup(), $user);
+        }
 
-        // Check that subscriptions collection are a valid objects
-        foreach ($subscriptions as $activeSubscription) {
-            $this->checkSubscriptionIntegrity($activeSubscription);
+        if (empty($subscriptions)) {
+            $subscriptions = $repo->findByProduct($product, $user);
         }
 
         $subscription = $strategy->createSubscription($product, $subscriptions);
@@ -109,7 +110,6 @@ class SubscriptionManager
      */
     public function activate(SubscriptionInterface $subscription, $isRenew = false): void
     {
-        $this->checkSubscriptionIntegrity($subscription);
         $this->checkSubscriptionNonActive($subscription);
 
         $strategy = $this->getStrategyFromSubscription($subscription);
@@ -138,7 +138,6 @@ class SubscriptionManager
      */
     public function renew(SubscriptionInterface $subscription): SubscriptionInterface
     {
-        $this->checkSubscriptionIntegrity($subscription);
         $this->checkSubscriptionRenewable($subscription);
         $this->checkSubscriptionActive($subscription);
 
@@ -223,24 +222,6 @@ class SubscriptionManager
         $strategyName = $subscription->getStrategy();
 
         return $this->subscriptionRegistry->get($strategyName);
-    }
-
-    /**
-     * Check subscription integrity.
-     *
-     * @param SubscriptionInterface $subscription
-     *
-     * @throws SubscriptionIntegrityException
-     */
-    protected function checkSubscriptionIntegrity(SubscriptionInterface $subscription): void
-    {
-        if (null === $subscription->getProduct()) {
-            throw new SubscriptionIntegrityException('Subscription must have a product defined.');
-        }
-
-        if (null === $subscription->getUser()) {
-            throw new SubscriptionIntegrityException('Subscription must have a user defined.');
-        }
     }
 
     /**
