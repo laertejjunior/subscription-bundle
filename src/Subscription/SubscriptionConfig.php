@@ -3,6 +3,7 @@
 namespace Shapecode\SubscriptionBundle\Subscription;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Shapecode\SubscriptionBundle\Repository\ProductGroupRepositoryInterface;
 use Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface;
 use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
 
@@ -63,6 +64,22 @@ class SubscriptionConfig
     public function getProductRepository(): ProductRepositoryInterface
     {
         return $this->registry->getRepository($this->getProductClass());
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductGroupClass(): string
+    {
+        return $this->config['product_group_class'];
+    }
+
+    /**
+     * @return ProductGroupRepositoryInterface
+     */
+    public function getProductGroupRepository(): ProductGroupRepositoryInterface
+    {
+        return $this->registry->getRepository($this->getProductGroupClass());
     }
 
     /**

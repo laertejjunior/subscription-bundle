@@ -13,6 +13,11 @@ interface ProductInterface
     public function getName();
 
     /**
+     * @return ProductGroupInterface|null
+     */
+    public function getGroup(): ?ProductGroupInterface;
+
+    /**
      * @return \DateInterval
      */
     public function getDuration();
@@ -40,7 +45,7 @@ interface ProductInterface
     /**
      * @return string
      */
-    public function getStrategyCodeName();
+    public function getStrategy();
 
     /**
      * @return ProductInterface

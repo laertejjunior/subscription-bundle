@@ -74,7 +74,9 @@ class SubscriptionManager
     public function create(ProductInterface $product, UserInterface $user, $strategyName = null): SubscriptionInterface
     {
         // Get strategy
-        $strategyName = $strategyName ?? $product->getStrategyCodeName();
+        $strategyName = $strategyName ?? $product->getStrategy();
+        $strategyName = $strategyName ?? $this->config->getDefaultProductStrategy();
+
         $strategy = $this->subscriptionRegistry->get($strategyName);
 
         $repo = $this->config->getSubscriptionRepository();
@@ -149,7 +151,7 @@ class SubscriptionManager
         $finalProduct = $strategy->getProductStrategy()->getFinalProduct($renewalProduct);
 
         // Create new subscription (following the way of expired subscription)
-        $newSubscription = $this->create($finalProduct, $subscription->getUser(), $finalProduct->getStrategyCodeName());
+        $newSubscription = $this->create($finalProduct, $subscription->getUser(), $finalProduct->getStrategy());
         $newSubscription->setAutoRenewal(true);
 
         // Activate the next subscription

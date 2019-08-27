@@ -33,6 +33,10 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('App/Entity/Product')
                     ->cannotBeEmpty()
                 ->end()
+                ->scalarNode('product_group_class')
+                    ->defaultValue('App/Entity/ProductGroup')
+                    ->cannotBeEmpty()
+                ->end()
 
                 ->scalarNode('default_product_strategy')
                     ->defaultValue('default')
