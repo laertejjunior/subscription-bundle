@@ -26,15 +26,15 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('subscription_class')
-                    ->defaultValue('App/Entity/Subscription')
+                    ->defaultValue('App\Entity\Subscription')
                     ->cannotBeEmpty()
                 ->end()
                 ->scalarNode('product_class')
-                    ->defaultValue('App/Entity/Product')
+                    ->defaultValue('App\Entity\Product')
                     ->cannotBeEmpty()
                 ->end()
                 ->scalarNode('product_group_class')
-                    ->defaultValue('App/Entity/ProductGroup')
+                    ->defaultValue('App\Entity\ProductGroup')
                     ->cannotBeEmpty()
                 ->end()
 

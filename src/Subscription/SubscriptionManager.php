@@ -75,7 +75,7 @@ class SubscriptionManager
     {
         // Get strategy
         $strategyName = $strategyName ?? $product->getStrategy();
-        $strategyName = $strategyName ?? $this->config->getDefaultProductStrategy();
+        $strategyName = $strategyName ?? $this->config->getDefaultSubscriptionStrategy();
 
         $strategy = $this->subscriptionRegistry->get($strategyName);
 
@@ -120,6 +120,8 @@ class SubscriptionManager
 
         $event = new ActivateEvent($subscription, $isRenew);
         $this->eventDispatcher->dispatch(ActivateEvent::class, $event);
+
+        $this->save($subscription);
     }
 
     /**
@@ -159,6 +161,8 @@ class SubscriptionManager
         $event = new RenewEvent($newSubscription);
         $this->eventDispatcher->dispatch(RenewEvent::class, $event);
 
+        $this->save($subscription);
+
         return $newSubscription;
     }
 
@@ -192,6 +196,8 @@ class SubscriptionManager
 
         $event = new ExpireEvent($subscription, $isRenew);
         $this->eventDispatcher->dispatch(ExpireEvent::class, $event);
+
+        $this->save($subscription);
     }
 
     /**
@@ -206,6 +212,8 @@ class SubscriptionManager
 
         $event = new DisableEvent($subscription);
         $this->eventDispatcher->dispatch(DisableEvent::class, $event);
+
+        $this->save($subscription);
     }
 
     /**
@@ -275,5 +283,16 @@ class SubscriptionManager
         }
 
         throw new SubscriptionStatusException('Subscription is not active.');
+    }
+
+    /**
+     * @param SubscriptionInterface $subscription
+     */
+    public function save(SubscriptionInterface $subscription)
+    {
+        $em = $this->registry->getManager();
+
+        $em->persist($subscription);
+        $em->flush();
     }
 }
