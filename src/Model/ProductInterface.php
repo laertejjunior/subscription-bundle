@@ -2,6 +2,10 @@
 
 namespace Shapecode\SubscriptionBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\PersistentCollection;
+
 /**
  * ProductInterface
  */
@@ -13,9 +17,19 @@ interface ProductInterface
     public function getName();
 
     /**
+     * @return ArrayCollection|PersistentCollection|Collection|FeatureInterface[]
+     */
+    public function getFeatures(): Collection;
+
+    /**
      * @return ProductGroupInterface|null
      */
     public function getGroup(): ?ProductGroupInterface;
+
+    /**
+     * @param ProductGroupInterface|null $group
+     */
+    public function setGroup(?ProductGroupInterface $group): void;
 
     /**
      * @return \DateInterval

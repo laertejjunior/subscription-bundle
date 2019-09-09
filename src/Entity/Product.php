@@ -1,0 +1,350 @@
+<?php
+
+namespace Shapecode\SubscriptionBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
+use Shapecode\SubscriptionBundle\Model\AddonInterface;
+use Shapecode\SubscriptionBundle\Model\FeatureInterface;
+use Shapecode\SubscriptionBundle\Model\ProductGroupInterface;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+
+/**
+ * Class Product
+ *
+ * @package App\Entity
+ * @author  Nikita Loges
+ *
+ * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ */
+class Product implements ProductInterface
+{
+
+    /**
+     * @var int
+     * @ORM\Column(type="bigint", options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var ArrayCollection|PersistentCollection|Collection|SubscriptionInterface[]
+     * @ORM\OneToMany(targetEntity="Shapecode\SubscriptionBundle\Model\SubscriptionInterface", mappedBy="product")
+     */
+    protected $subscriptions;
+
+    /**
+     * @var ArrayCollection|PersistentCollection|Collection|FeatureInterface[]
+     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\FeatureInterface", inversedBy="products")
+     */
+    protected $features;
+
+    /**
+     * @var ArrayCollection|PersistentCollection|Collection|AddonInterface[]
+     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\AddonInterface", inversedBy="products")
+     */
+    protected $addons;
+
+    /**
+     * @var ProductInterface|null
+     * @ORM\OneToOne(targetEntity="App\Entity\Product")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    protected $nextRenewalProduct;
+
+    /**
+     * @var ProductGroupInterface|null
+     * @ORM\ManyToOne(targetEntity="Shapecode\SubscriptionBundle\Model\ProductGroupInterface", inversedBy="products")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    protected $group;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    protected $name;
+
+    /**
+     * @var float
+     * @ORM\Column(type="float")
+     */
+    protected $amount;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=true, options={"unsigned":true})
+     */
+    protected $duration;
+
+    /**
+     * @var integer|null
+     * @ORM\Column(type="integer", nullable=true, options={"unsigned":true})
+     */
+    protected $quota;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    protected $autoRenewal = false;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", name="is_default", options={"default": false})
+     */
+    protected $default = false;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $expirationDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $strategy;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    protected $enabled = false;
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct()
+    {
+        $this->subscriptions = new ArrayCollection();
+        $this->features = new ArrayCollection();
+        $this->addons = new ArrayCollection();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNextRenewalProduct()
+    {
+        return $this->nextRenewalProduct;
+    }
+
+    /**
+     * @param mixed $nextRenewalProduct
+     */
+    public function setNextRenewalProduct($nextRenewalProduct)
+    {
+        $this->nextRenewalProduct = $nextRenewalProduct;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getGroup(): ?ProductGroupInterface
+    {
+        return $this->group;
+    }
+
+    /**
+     * @param ProductGroupInterface|null $group
+     */
+    public function setGroup(?ProductGroupInterface $group): void
+    {
+        $this->group = $group;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmountInteger()
+    {
+        return $this->getAmount() * 100;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param float $amount
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getDays()
+    {
+        return $this->getDuration() / (60 * 60 * 24);
+    }
+
+    /**
+     * @param integer $duration
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getQuota()
+    {
+        return $this->quota;
+    }
+
+    /**
+     * @param int|null $quota
+     */
+    public function setQuota($quota)
+    {
+        $this->quota = $quota;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAutoRenewal()
+    {
+        return $this->autoRenewal;
+    }
+
+    /**
+     * @param bool $autoRenewal
+     */
+    public function setAutoRenewal($autoRenewal)
+    {
+        $this->autoRenewal = $autoRenewal;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * @param bool $default
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getExpirationDate()
+    {
+        return $this->expirationDate;
+    }
+
+    /**
+     * @param \DateTime $expirationDate
+     */
+    public function setExpirationDate($expirationDate)
+    {
+        $this->expirationDate = $expirationDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStrategy()
+    {
+        return $this->strategy;
+    }
+
+    /**
+     * @param string $strategy
+     */
+    public function setStrategy($strategy)
+    {
+        $this->strategy = $strategy;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return ProductFeature[]|ArrayCollection|Collection|PersistentCollection
+     */
+    public function getFeatures(): Collection
+    {
+        return $this->features;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName() ?: 'No name';
+    }
+}

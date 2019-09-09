@@ -2,110 +2,107 @@
 
 namespace Shapecode\SubscriptionBundle\Model;
 
+use App\Entity\ProductAddon;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * SubscriptionInterface
+ * Interface SubscriptionInterface
  *
+ * @package Shapecode\SubscriptionBundle\Model
+ * @author  Nikita Loges
  */
 interface SubscriptionInterface
 {
     /**
      * @return UserInterface
      */
-    public function getUser();
+    public function getUser(): UserInterface;
 
     /**
      * @param UserInterface $user
-     *
-     * @return SubscriptionInterface
      */
-    public function setUser(UserInterface $user);
+    public function setUser(UserInterface $user): void;
 
     /**
-     * @return \DateTimeImmutable
+     * @return \DateTime
      */
-    public function getStartDate();
+    public function getStartDate(): \DateTime;
 
     /**
-     * @param \DateTimeImmutable $dateTime
-     *
-     * @return SubscriptionInterface
+     * @param \DateTime $dateTime
      */
-    public function setStartDate(\DateTimeImmutable $dateTime);
+    public function setStartDate(\DateTime $dateTime): void;
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return \DateTime|null
      */
-    public function getEndDate();
+    public function getEndDate(): ?\DateTime;
 
     /**
-     * @param null|\DateTimeImmutable $dateTime
-     *
-     * @return SubscriptionInterface
+     * @param null|\DateTime $dateTime
      */
-    public function setEndDate($dateTime);
+    public function setEndDate(?\DateTime $dateTime): void;
+
+    /**
+     * @return ProductAddon[]|ArrayCollection|Collection|PersistentCollection
+     */
+    public function getAddons(): Collection;
 
     /**
      * @return ProductInterface
      */
-    public function getProduct();
+    public function getProduct(): ProductInterface;
 
     /**
      * @param ProductInterface $product
      *
      * @return mixed
      */
-    public function setProduct(ProductInterface $product);
+    public function setProduct(ProductInterface $product): void;
 
     /**
      * @return boolean
      */
-    public function isActive();
+    public function isActive(): bool;
 
     /**
-     * @return SubscriptionInterface
      */
-    public function activate();
+    public function activate(): void;
 
     /**
-     * @return SubscriptionInterface
      */
-    public function deactivate();
+    public function deactivate(): void;
 
     /**
      * @param boolean $renewal
-     *
-     * @return SubscriptionInterface
      */
-    public function setAutoRenewal($renewal);
+    public function setAutoRenewal(bool $renewal): void;
 
     /**
      * @return boolean
      */
-    public function isAutoRenewal();
+    public function isAutoRenewal(): bool;
 
     /**
      * @param string $reason
-     *
-     * @return mixed
      */
-    public function setReason($reason);
+    public function setReason(string $reason): void;
 
     /**
      * @return string
      */
-    public function getReason();
+    public function getReason(): string;
 
     /**
      * @param string $name
-     *
-     * @return SubscriptionInterface
      */
-    public function setStrategy($name);
+    public function setStrategy(string $name): void;
 
     /**
      * @return string
      */
-    public function getStrategy();
+    public function getStrategy(): string;
 }
