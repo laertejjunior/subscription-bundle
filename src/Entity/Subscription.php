@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 use Shapecode\SubscriptionBundle\Model\AddonInterface;
+use Shapecode\SubscriptionBundle\Model\FeatureInterface;
 use Shapecode\SubscriptionBundle\Model\ProductInterface;
 use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -98,7 +99,7 @@ class Subscription implements SubscriptionInterface
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -106,7 +107,7 @@ class Subscription implements SubscriptionInterface
     /**
      * @return UserInterface
      */
-    public function getUser(): UserInterface
+    public function getUser(): ?UserInterface
     {
         return $this->user;
     }
@@ -114,7 +115,7 @@ class Subscription implements SubscriptionInterface
     /**
      * @param UserInterface $user
      */
-    public function setUser(UserInterface $user): void
+    public function setUser(?UserInterface $user): void
     {
         $this->user = $user;
     }
@@ -122,7 +123,7 @@ class Subscription implements SubscriptionInterface
     /**
      * @return ProductInterface
      */
-    public function getProduct(): ProductInterface
+    public function getProduct(): ?ProductInterface
     {
         return $this->product;
     }
@@ -130,7 +131,7 @@ class Subscription implements SubscriptionInterface
     /**
      * @param ProductInterface $product
      */
-    public function setProduct(ProductInterface $product): void
+    public function setProduct(?ProductInterface $product): void
     {
         $this->product = $product;
     }
@@ -146,7 +147,7 @@ class Subscription implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function getStartDate(): \DateTime
+    public function getStartDate(): ?\DateTime
     {
         return $this->startDate;
     }
@@ -154,7 +155,7 @@ class Subscription implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function setStartDate(\DateTime $startDate): void
+    public function setStartDate(?\DateTime $startDate): void
     {
         $this->startDate = $startDate;
     }
@@ -226,7 +227,7 @@ class Subscription implements SubscriptionInterface
     /**
      * @return string
      */
-    public function getReason(): string
+    public function getReason(): ?string
     {
         return $this->reason;
     }
@@ -234,7 +235,7 @@ class Subscription implements SubscriptionInterface
     /**
      * @param string $reason
      */
-    public function setReason(string $reason): void
+    public function setReason(?string $reason): void
     {
         $this->reason = $reason;
     }
@@ -242,7 +243,7 @@ class Subscription implements SubscriptionInterface
     /**
      * @param string $name
      */
-    public function setStrategy(string $name): void
+    public function setStrategy(?string $name): void
     {
         $this->strategy = $name;
     }
@@ -250,7 +251,7 @@ class Subscription implements SubscriptionInterface
     /**
      * @return string
      */
-    public function getStrategy(): string
+    public function getStrategy(): ?string
     {
         return $this->strategy;
     }

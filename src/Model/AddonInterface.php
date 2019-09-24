@@ -18,7 +18,7 @@ interface AddonInterface
     /**
      * @return string
      */
-    public function getName(): string;
+    public function getName(): ?string;
 
     /**
      * @return ArrayCollection|PersistentCollection|Collection|ProductInterface[]

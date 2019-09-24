@@ -18,12 +18,12 @@ interface FeatureInterface
     /**
      * @return string
      */
-    public function getName(): string;
+    public function getName(): ?string;
 
     /**
      * @return string
      */
-    public function getKey(): string;
+    public function getKey(): ?string;
 
     /**
      * @return ArrayCollection|PersistentCollection|Collection|ProductInterface[]
@@ -36,8 +36,13 @@ interface FeatureInterface
     public function getAddons(): Collection;
 
     /**
-     * @return ArrayCollection|PersistentCollection|Collection|SubscriptionInterface[]
+     * @return int|null
      */
-    public function getSubscriptions(): Collection;
+    public function getPosition(): ?int;
+
+    /**
+     * @param int|null $position
+     */
+    public function setPosition(?int $position): void;
 
 }

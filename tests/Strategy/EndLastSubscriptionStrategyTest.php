@@ -20,7 +20,7 @@ class EndLastSubscriptionStrategyTest extends AbstractTestCaseBase
 
     public function testExpiredSubscription()
     {
-        $currentDate = new \DateTimeImmutable();
+        $currentDate = new \DateTime();
         $period      = 864000; // 10 days
 
         // Product
@@ -30,7 +30,7 @@ class EndLastSubscriptionStrategyTest extends AbstractTestCaseBase
 
         // Active subscriptions
         $subscription1 = \Mockery::mock(SubscriptionInterface::class);
-        $subscription1->shouldReceive('getEndDate')->andReturn(new \DateTimeImmutable('2017-04-15 16:05:10'));
+        $subscription1->shouldReceive('getEndDate')->andReturn(new \DateTime('2017-04-15 16:05:10'));
 
         // Strategy
         $strategy     = new SubscriptionEndLastStrategy(SubscriptionMock::class, $this->defaultProductStrategy);
@@ -45,7 +45,7 @@ class EndLastSubscriptionStrategyTest extends AbstractTestCaseBase
 
     public function testNonExpiredSubscription()
     {
-        $currentDate = new \DateTimeImmutable();
+        $currentDate = new \DateTime();
         $period      = 864000; // 10 days
 
         // Product

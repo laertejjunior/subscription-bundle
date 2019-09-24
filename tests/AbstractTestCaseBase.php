@@ -53,12 +53,12 @@ abstract class AbstractTestCaseBase extends TestCase
     protected $user4;
 
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTime
      */
     protected $subscription1EndDate;
 
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTime
      */
     protected $subscription2EndDate;
 
@@ -121,14 +121,14 @@ abstract class AbstractTestCaseBase extends TestCase
 
 
         // Subscriptions
-        $this->subscription1EndDate = new \DateTimeImmutable();
+        $this->subscription1EndDate = new \DateTime();
         $this->currentSubscription1 = \Mockery::mock(SubscriptionInterface::class);
         $this->currentSubscription1->shouldReceive('getEndDate')->andReturn($this->subscription1EndDate);
         $this->currentSubscription1->shouldReceive('getUser')->andReturn($this->user1);
         $this->currentSubscription1->shouldReceive('getProduct')->andReturn($this->product);
         //$this->currentSubscription1->shouldReceive('setStrategy');
 
-        $this->subscription2EndDate = new \DateTimeImmutable('+10 days');
+        $this->subscription2EndDate = new \DateTime('+10 days');
         $this->currentSubscription2 = \Mockery::mock(SubscriptionInterface::class);
         $this->currentSubscription2->shouldReceive('getEndDate')->andReturn($this->subscription2EndDate->modify('+7 days'));
         $this->currentSubscription2->shouldReceive('getUser')->andReturn($this->user2);
@@ -148,7 +148,7 @@ abstract class AbstractTestCaseBase extends TestCase
         $this->currentSubscription4->shouldReceive('getProduct')->andReturn($this->product);
 
         $this->currentSubscription5 = \Mockery::mock(SubscriptionInterface::class);
-        $this->currentSubscription5->shouldReceive('getEndDate')->andReturn(new \DateTimeImmutable('+5 days'));
+        $this->currentSubscription5->shouldReceive('getEndDate')->andReturn(new \DateTime('+5 days'));
         $this->currentSubscription5->shouldReceive('getUser')->andReturn($this->user4);
         $this->currentSubscription5->shouldReceive('getProduct')->andReturn($this->product);
 

@@ -19,22 +19,22 @@ interface SubscriptionInterface
     /**
      * @return UserInterface
      */
-    public function getUser(): UserInterface;
+    public function getUser(): ?UserInterface;
 
     /**
      * @param UserInterface $user
      */
-    public function setUser(UserInterface $user): void;
+    public function setUser(?UserInterface $user): void;
 
     /**
      * @return \DateTime
      */
-    public function getStartDate(): \DateTime;
+    public function getStartDate(): ?\DateTime;
 
     /**
      * @param \DateTime $dateTime
      */
-    public function setStartDate(\DateTime $dateTime): void;
+    public function setStartDate(?\DateTime $dateTime): void;
 
     /**
      * @return \DateTime|null
@@ -47,21 +47,21 @@ interface SubscriptionInterface
     public function setEndDate(?\DateTime $dateTime): void;
 
     /**
-     * @return ProductAddon[]|ArrayCollection|Collection|PersistentCollection
+     * @return AddonInterface[]|ArrayCollection|Collection|PersistentCollection
      */
     public function getAddons(): Collection;
 
     /**
      * @return ProductInterface
      */
-    public function getProduct(): ProductInterface;
+    public function getProduct(): ?ProductInterface;
 
     /**
      * @param ProductInterface $product
      *
      * @return mixed
      */
-    public function setProduct(ProductInterface $product): void;
+    public function setProduct(?ProductInterface $product): void;
 
     /**
      * @return boolean
@@ -89,20 +89,20 @@ interface SubscriptionInterface
     /**
      * @param string $reason
      */
-    public function setReason(string $reason): void;
+    public function setReason(?string $reason): void;
 
     /**
      * @return string
      */
-    public function getReason(): string;
+    public function getReason(): ?string;
 
     /**
      * @param string $name
      */
-    public function setStrategy(string $name): void;
+    public function setStrategy(?string $name): void;
 
     /**
      * @return string
      */
-    public function getStrategy(): string;
+    public function getStrategy(): ?string;
 }

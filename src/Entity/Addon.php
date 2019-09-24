@@ -66,7 +66,7 @@ class Addon implements AddonInterface
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -74,9 +74,17 @@ class Addon implements AddonInterface
     /**
      * @inheritDoc
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
     }
 
     /**
@@ -101,6 +109,14 @@ class Addon implements AddonInterface
     public function getFeatures(): Collection
     {
         return $this->features;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName() ?: 'No name';
     }
 
 }

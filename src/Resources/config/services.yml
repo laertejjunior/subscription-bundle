@@ -10,8 +10,17 @@ services:
     Shapecode\SubscriptionBundle\Command\:
         resource: '../../Command/*'
 
-    Shapecode\SubscriptionBundle\Subscription\:
-        resource: '../../Subscription/*'
+    Shapecode\SubscriptionBundle\Feature\:
+        resource: '../../Feature/*'
+
+    Shapecode\SubscriptionBundle\Listener\:
+        resource: '../../Listener/*'
 
     Shapecode\SubscriptionBundle\Strategy\:
         resource: '../../Strategy/*'
+
+    Shapecode\SubscriptionBundle\Subscription\:
+        resource: '../../Subscription/*'
+
+    Shapecode\SubscriptionBundle\Twig\:
+        resource: '../../Twig/*'

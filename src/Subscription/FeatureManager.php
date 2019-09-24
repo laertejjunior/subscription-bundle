@@ -3,11 +3,11 @@
 namespace Shapecode\SubscriptionBundle\Subscription;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 use Shapecode\SubscriptionBundle\Model\ProductInterface;
 use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use function Doctrine\ORM\QueryBuilder;
 
 /**
  * Class FeatureManager
@@ -58,13 +58,46 @@ class FeatureManager
 
     public function userHasFeature(UserInterface $user, string $key): bool
     {
-        $repo = $this->config->getFeatureRepository();
-        $qb = $repo->createQueryBuilder('f');
+        $repo = $this->config->getSubscriptionRepository();
 
-        $qb->select('count(f.id) as count');
+        /** @var QueryBuilder $qb */
+        $qb = $repo->createQueryBuilder('s');
 
-        $qb->join('p.subscriptions', 's');
+        $qb->select('count(s.id) as count');
+
         $qb->join('s.product', 'p');
+        $qb->join('p.features', 'f');
+
+        $qb->andWhere($qb->expr()->eq('s.user', ':user'));
+        $qb->andWhere($qb->expr()->eq('s.active', ':active'));
+        $qb->andWhere($qb->expr()->lte('s.startDate', ':startDate'));
+        $qb->andWhere(
+            $qb->expr()->orX(
+                $qb->expr()->gte('s.endDate', ':endDate'),
+                $qb->expr()->isNull('s.endDate')
+            )
+        );
+        $qb->andWhere($qb->expr()->eq('f.key', ':feature'));
+
+        $qb->setParameter('feature', $key);
+        $qb->setParameter('user', $user);
+        $qb->setParameter('active', true);
+        $qb->setParameter('startDate', new \DateTime());
+        $qb->setParameter('endDate', new \DateTime());
+
+        $result = $qb->getQuery()->getSingleScalarResult();
+
+        return $result > 0;
+    }
+
+    public function userHasActiveSubscription(UserInterface $user): bool
+    {
+        $repo = $this->config->getSubscriptionRepository();
+
+        /** @var QueryBuilder $qb */
+        $qb = $repo->createQueryBuilder('s');
+
+        $qb->select('count(s.id) as count');
 
         $qb->andWhere($qb->expr()->eq('s.user', ':user'));
         $qb->andWhere($qb->expr()->eq('s.active', ':active'));
@@ -84,5 +117,33 @@ class FeatureManager
         $result = $qb->getQuery()->getSingleScalarResult();
 
         return $result > 0;
+    }
+
+    public function userGetActiveSubscription(UserInterface $user): ?SubscriptionInterface
+    {
+        $repo = $this->config->getSubscriptionRepository();
+
+        /** @var QueryBuilder $qb */
+        $qb = $repo->createQueryBuilder('s');
+
+        $qb->andWhere($qb->expr()->eq('s.user', ':user'));
+        $qb->andWhere($qb->expr()->eq('s.active', ':active'));
+        $qb->andWhere($qb->expr()->lte('s.startDate', ':startDate'));
+        $qb->andWhere(
+            $qb->expr()->orX(
+                $qb->expr()->gte('s.endDate', ':endDate'),
+                $qb->expr()->isNull('s.endDate')
+            )
+        );
+
+        $qb->setParameter('user', $user);
+        $qb->setParameter('active', true);
+        $qb->setParameter('startDate', new \DateTime());
+        $qb->setParameter('endDate', new \DateTime());
+
+        $qb->setMaxResults(1);
+        $qb->orderBy('s.id', 'ASC');
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 }

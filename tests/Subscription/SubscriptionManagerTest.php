@@ -193,7 +193,7 @@ class SubscriptionManagerTest extends AbstractTestCaseBase
         $subscription->setActive(true);
         $subscription->setProduct($this->product);
         $subscription->setAutoRenewal(false);
-        $subscription->setEndDate(new \DateTimeImmutable());
+        $subscription->setEndDate(new \DateTime());
 
         $this->expectException(SubscriptionRenewalException::class);
         $this->expectExceptionMessage('The current subscription is not auto-renewal.');
@@ -207,7 +207,7 @@ class SubscriptionManagerTest extends AbstractTestCaseBase
         $subscription->setActive(true);
         $subscription->setProduct($this->product);
         $subscription->setAutoRenewal(true);
-        $subscription->setEndDate(new \DateTimeImmutable());
+        $subscription->setEndDate(new \DateTime());
 
         $this->expectException(SubscriptionRenewalException::class);
         $this->expectExceptionMessage('The product "'.$this->product->getName().'" is not auto-renewal. Maybe is disabled?');
@@ -233,7 +233,7 @@ class SubscriptionManagerTest extends AbstractTestCaseBase
         $subscription->setActive(true);
         $subscription->setProduct($product);
         $subscription->setAutoRenewal(true);
-        $subscription->setEndDate(new \DateTimeImmutable());
+        $subscription->setEndDate(new \DateTime());
 
         // No current active subscriptions
         $this->subscriptionRepository->shouldReceive('findByProduct')->andReturn([]);
@@ -267,7 +267,7 @@ class SubscriptionManagerTest extends AbstractTestCaseBase
         $subscription->setActive(true);
         $subscription->setProduct($product);
         $subscription->setAutoRenewal(true);
-        $subscription->setEndDate(new \DateTimeImmutable());
+        $subscription->setEndDate(new \DateTime());
 
         // No current active subscriptions
         $this->subscriptionRepository->shouldReceive('findByProduct')->andReturn([]);
@@ -304,7 +304,7 @@ class SubscriptionManagerTest extends AbstractTestCaseBase
         $subscription->setActive(true);
         $subscription->setProduct($product);
         $subscription->setAutoRenewal(true);
-        $subscription->setEndDate(new \DateTimeImmutable());
+        $subscription->setEndDate(new \DateTime());
 
         // No current active subscriptions
         $this->subscriptionRepository->shouldReceive('findByProduct')->andReturn([]);

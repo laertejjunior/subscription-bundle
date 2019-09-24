@@ -48,7 +48,7 @@ abstract class AbstractSubscriptionStrategy implements SubscriptionStrategyInter
     /**
      * @return SubscriptionInterface
      */
-    public function createSubscriptionInstance()
+    public function createSubscriptionInstance(): SubscriptionInterface
     {
         $class = $this->config->getSubscriptionClass();
 
@@ -57,8 +57,6 @@ abstract class AbstractSubscriptionStrategy implements SubscriptionStrategyInter
 
     /**
      * @return ProductStrategyInterface
-     *
-     * @throws \Shapecode\SubscriptionBundle\Exception\StrategyNotFoundException
      */
     public function getProductStrategy(): ProductStrategyInterface
     {
@@ -68,10 +66,10 @@ abstract class AbstractSubscriptionStrategy implements SubscriptionStrategyInter
     /**
      * Create current date.
      *
-     * @return \DateTimeImmutable
+     * @return \DateTime
      */
-    protected function createCurrentDate()
+    protected function createCurrentDate(): \DateTime
     {
-        return new \DateTimeImmutable();
+        return new \DateTime();
     }
 }

@@ -9,8 +9,6 @@ use Doctrine\ORM\PersistentCollection;
 use Shapecode\SubscriptionBundle\Model\AddonInterface;
 use Shapecode\SubscriptionBundle\Model\FeatureInterface;
 use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Tenolo\Bundle\EntityBundle\Entity\BaseEntity;
 
 /**
  * Class Feature
@@ -33,15 +31,9 @@ class Feature implements FeatureInterface
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|ProductInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\ProductInterface", mappedBy="features")
+     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\ProductInterface", mappedBy="features", cascade={"persist"})
      */
     protected $products;
-
-    /**
-     * @var ArrayCollection|PersistentCollection|Collection|SubscriptionInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\SubscriptionInterface", mappedBy="product")
-     */
-    protected $subscriptions;
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|AddonInterface[]
@@ -56,30 +48,47 @@ class Feature implements FeatureInterface
     protected $name;
 
     /**
+     * @var string|null
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description;
+
+    /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="keyword")
      */
     protected $key;
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, name="factor")
      */
     protected $value;
+
+    /**
+     * @var integer|null
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $position;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default": true})
+     */
+    protected $display = true;
 
     /**
      */
     public function __construct()
     {
         $this->products = new ArrayCollection();
-        $this->subscriptions = new ArrayCollection();
         $this->addons = new ArrayCollection();
     }
 
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -87,7 +96,7 @@ class Feature implements FeatureInterface
     /**
      * @inheritDoc
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -95,15 +104,31 @@ class Feature implements FeatureInterface
     /**
      * @param string $name
      */
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
 
     /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $description
+     */
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
      * @return string
      */
-    public function getKey(): string
+    public function getKey(): ?string
     {
         return $this->key;
     }
@@ -111,7 +136,7 @@ class Feature implements FeatureInterface
     /**
      * @param string $key
      */
-    public function setKey(string $key): void
+    public function setKey(?string $key): void
     {
         $this->key = $key;
     }
@@ -119,7 +144,7 @@ class Feature implements FeatureInterface
     /**
      * @return string
      */
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->value;
     }
@@ -127,7 +152,7 @@ class Feature implements FeatureInterface
     /**
      * @param string $value
      */
-    public function setValue(string $value): void
+    public function setValue(?string $value): void
     {
         $this->value = $value;
     }
@@ -141,6 +166,38 @@ class Feature implements FeatureInterface
     }
 
     /**
+     * @param ProductInterface $product
+     *
+     * @return bool
+     */
+    public function hasProduct(ProductInterface $product): bool
+    {
+        return $this->products->contains($product);
+    }
+
+    /**
+     * @param ProductInterface $product
+     */
+    public function addProduct(ProductInterface $product): void
+    {
+        if (!$this->hasProduct($product)) {
+            $this->products->add($product);
+            $product->getFeatures()->add($this);
+        }
+    }
+
+    /**
+     * @param ProductInterface $product
+     */
+    public function removeProduct(ProductInterface $product): void
+    {
+        if ($this->hasProduct($product)) {
+            $this->products->removeElement($product);
+            $product->getFeatures()->removeElement($this);
+        }
+    }
+
+    /**
      * @inheritDoc
      */
     public function getAddons(): Collection
@@ -149,11 +206,43 @@ class Feature implements FeatureInterface
     }
 
     /**
-     * @inheritDoc
+     * @return int|null
      */
-    public function getSubscriptions(): Collection
+    public function getPosition(): ?int
     {
-        return $this->subscriptions;
+        return $this->position;
+    }
+
+    /**
+     * @param int|null $position
+     */
+    public function setPosition(?int $position): void
+    {
+        $this->position = $position;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDisplay(): bool
+    {
+        return $this->display;
+    }
+
+    /**
+     * @param bool $display
+     */
+    public function setDisplay(bool $display): void
+    {
+        $this->display = $display;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName() ?: 'No name';
     }
 
 }

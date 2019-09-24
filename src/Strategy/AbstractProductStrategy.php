@@ -12,6 +12,12 @@ use Shapecode\SubscriptionBundle\Subscription\ProductRegistry;
 use Shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
 use Shapecode\SubscriptionBundle\Subscription\SubscriptionRegistry;
 
+/**
+ * Class AbstractProductStrategy
+ *
+ * @package Shapecode\SubscriptionBundle\Strategy
+ * @author  Nikita Loges
+ */
 abstract class AbstractProductStrategy implements ProductStrategyInterface
 {
 
@@ -42,7 +48,7 @@ abstract class AbstractProductStrategy implements ProductStrategyInterface
     /**
      * @return ProductRepositoryInterface
      */
-    protected function getProductRepository()
+    protected function getProductRepository(): ProductRepositoryInterface
     {
         return $this->config->getProductRepository();
     }
@@ -50,7 +56,7 @@ abstract class AbstractProductStrategy implements ProductStrategyInterface
     /**
      * @return SubscriptionRepositoryInterface
      */
-    protected function getSubscriptionRepository()
+    protected function getSubscriptionRepository(): SubscriptionRepositoryInterface
     {
         return $this->config->getSubscriptionRepository();
     }

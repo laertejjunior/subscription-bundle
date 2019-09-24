@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 use Shapecode\SubscriptionBundle\Model\ProductGroupInterface;
 use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Tenolo\Bundle\EntityBundle\Entity\BaseEntity;
 
 /**
  * Class Product

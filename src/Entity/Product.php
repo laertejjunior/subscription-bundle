@@ -40,6 +40,7 @@ class Product implements ProductInterface
     /**
      * @var ArrayCollection|PersistentCollection|Collection|FeatureInterface[]
      * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\FeatureInterface", inversedBy="products")
+     * @ORM\OrderBy({"position": "ASC"})
      */
     protected $features;
 
@@ -333,11 +334,27 @@ class Product implements ProductInterface
     }
 
     /**
-     * @return ProductFeature[]|ArrayCollection|Collection|PersistentCollection
+     * @return FeatureInterface[]|ArrayCollection|Collection|PersistentCollection
      */
     public function getFeatures(): Collection
     {
         return $this->features;
+    }
+
+    /**
+     * @return ArrayCollection|Collection|PersistentCollection|SubscriptionInterface[]
+     */
+    public function getSubscriptions(): Collection
+    {
+        return $this->subscriptions;
+    }
+
+    /**
+     * @return ArrayCollection|Collection|PersistentCollection|AddonInterface[]
+     */
+    public function getAddons(): Collection
+    {
+        return $this->addons;
     }
 
     /**

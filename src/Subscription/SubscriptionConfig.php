@@ -3,8 +3,12 @@
 namespace Shapecode\SubscriptionBundle\Subscription;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityRepository;
+use Shapecode\SubscriptionBundle\Model\AddonInterface;
+use Shapecode\SubscriptionBundle\Model\FeatureInterface;
+use Shapecode\SubscriptionBundle\Model\ProductGroupInterface;
+use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 use Shapecode\SubscriptionBundle\Repository\ProductGroupRepositoryInterface;
 use Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface;
 use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
@@ -41,7 +45,7 @@ class SubscriptionConfig
      */
     public function getSubscriptionClass(): string
     {
-        return $this->config['subscription_class'];
+        return $this->getSubscriptionRepository()->getClassName();
     }
 
     /**
@@ -49,7 +53,7 @@ class SubscriptionConfig
      */
     public function getSubscriptionRepository(): SubscriptionRepositoryInterface
     {
-        return $this->registry->getRepository($this->getSubscriptionClass());
+        return $this->registry->getRepository(SubscriptionInterface::class);
     }
 
     /**
@@ -57,7 +61,7 @@ class SubscriptionConfig
      */
     public function getProductClass(): string
     {
-        return $this->config['product_class'];
+        return $this->getProductRepository()->getClassName();
     }
 
     /**
@@ -65,7 +69,7 @@ class SubscriptionConfig
      */
     public function getProductRepository(): ProductRepositoryInterface
     {
-        return $this->registry->getRepository($this->getProductClass());
+        return $this->registry->getRepository(ProductInterface::class);
     }
 
     /**
@@ -73,7 +77,7 @@ class SubscriptionConfig
      */
     public function getFeatureClass(): string
     {
-        return $this->config['feature_class'];
+        return $this->getFeatureRepository()->getClassName();
     }
 
     /**
@@ -81,7 +85,7 @@ class SubscriptionConfig
      */
     public function getFeatureRepository(): EntityRepository
     {
-        return $this->registry->getRepository($this->getFeatureClass());
+        return $this->registry->getRepository(FeatureInterface::class);
     }
 
     /**
@@ -89,7 +93,7 @@ class SubscriptionConfig
      */
     public function getAddonClass(): string
     {
-        return $this->config['addon_class'];
+        return $this->getAddonRepository()->getClassName();
     }
 
     /**
@@ -97,7 +101,7 @@ class SubscriptionConfig
      */
     public function getAddonRepository(): EntityRepository
     {
-        return $this->registry->getRepository($this->getAddonClass());
+        return $this->registry->getRepository(AddonInterface::class);
     }
 
     /**
@@ -105,7 +109,7 @@ class SubscriptionConfig
      */
     public function getProductGroupClass(): string
     {
-        return $this->config['product_group_class'];
+        return $this->getProductGroupRepository()->getClassName();
     }
 
     /**
@@ -113,7 +117,7 @@ class SubscriptionConfig
      */
     public function getProductGroupRepository(): ProductGroupRepositoryInterface
     {
-        return $this->registry->getRepository($this->getProductGroupClass());
+        return $this->registry->getRepository(ProductGroupInterface::class);
     }
 
     /**

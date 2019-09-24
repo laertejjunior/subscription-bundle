@@ -79,7 +79,7 @@ class SubscriptionMock implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function setStartDate(\DateTimeImmutable $startDate)
+    public function setStartDate(\DateTime $startDate)
     {
         $this->startDate = $startDate;
 

@@ -57,8 +57,8 @@ class SubscriptionEndLastStrategy extends AbstractSubscriptionStrategy
         }
 
         // Date should use the \DateTimeImmutable (a little fix)
-        if (!$startDate instanceof \DateTimeImmutable) {
-            $startDate = (new \DateTimeImmutable())->setTimestamp($startDate->getTimestamp());
+        if (!$startDate instanceof \DateTime) {
+            $startDate = (new \DateTime())->setTimestamp($startDate->getTimestamp());
         }
 
         return $this->create($startDate, $product);
@@ -67,15 +67,19 @@ class SubscriptionEndLastStrategy extends AbstractSubscriptionStrategy
     /**
      * Create subscription.
      *
-     * @param \DateTimeImmutable $startDate
+     * @param \DateTime $startDate
      * @param ProductInterface   $product
      *
      * @return SubscriptionInterface
      */
-    protected function create($startDate, $product): SubscriptionInterface
+    protected function create(\DateTime $startDate, ProductInterface $product): SubscriptionInterface
     {
-        $endDate = null !== $product->getDuration() ?
-            $startDate->modify(sprintf('+%s seconds', $product->getDuration())) : null;
+        $endDate = null;
+
+        if ($product->getDuration() > 0) {
+            $endDate = clone $startDate;
+            $endDate->modify(sprintf('+%s seconds', $product->getDuration()));
+        }
 
         // Create the new subscription
         $subscription = $this->createSubscriptionInstance();
