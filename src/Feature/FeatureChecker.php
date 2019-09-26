@@ -4,6 +4,7 @@ namespace Shapecode\SubscriptionBundle\Feature;
 
 use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
 use Shapecode\SubscriptionBundle\Subscription\FeatureManager;
+use Shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
 use Symfony\Component\Security\Core\Security;
 
 /**
@@ -15,6 +16,9 @@ use Symfony\Component\Security\Core\Security;
 class FeatureChecker
 {
 
+    /** @var SubscriptionConfig */
+    protected $config;
+
     /** @var FeatureManager */
     protected $manager;
 
@@ -22,11 +26,16 @@ class FeatureChecker
     protected $security;
 
     /**
-     * @param FeatureManager $manager
-     * @param Security       $security
+     * @param SubscriptionConfig $config
+     * @param FeatureManager     $manager
+     * @param Security           $security
      */
-    public function __construct(FeatureManager $manager, Security $security)
-    {
+    public function __construct(
+        SubscriptionConfig $config,
+        FeatureManager $manager,
+        Security $security
+    ) {
+        $this->config = $config;
         $this->manager = $manager;
         $this->security = $security;
     }
@@ -38,6 +47,10 @@ class FeatureChecker
      */
     public function granted(string $key): bool
     {
+        if ($this->config->getFeatureCheckOverride() !== null) {
+            return $this->config->getFeatureCheckOverride();
+        }
+
         $user = $this->security->getUser();
 
         return $this->manager->userHasFeature($user, $key);

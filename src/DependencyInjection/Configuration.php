@@ -2,8 +2,6 @@
 
 namespace Shapecode\SubscriptionBundle\DependencyInjection;
 
-use Shapecode\SubscriptionBundle\Strategy\ProductDefaultStrategy;
-use Shapecode\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -33,6 +31,10 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('default_subscription_strategy')
                     ->defaultValue('end_last')
                     ->cannotBeEmpty()
+                ->end()
+
+                ->booleanNode('feature_check_override')
+                    ->defaultNull()
                 ->end()
 
                 ->arrayNode('reasons')

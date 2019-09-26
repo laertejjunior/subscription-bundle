@@ -145,4 +145,12 @@ class SubscriptionConfig
     {
         return $this->config['default_subscription_strategy'];
     }
+
+    /**
+     * @return bool|null
+     */
+    public function getFeatureCheckOverride(): ?bool
+    {
+        return $this->config['feature_check_override'];
+    }
 }
