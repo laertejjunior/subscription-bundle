@@ -194,7 +194,7 @@ class Product implements ProductInterface
      */
     public function getAmountInteger()
     {
-        return $this->getAmount() * 100;
+        return intval($this->getAmount() * 100);
     }
 
     /**

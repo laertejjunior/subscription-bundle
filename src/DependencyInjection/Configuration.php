@@ -18,8 +18,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('shapecode_subscription');
+        $treeBuilder = new TreeBuilder('shapecode_subscription');
+        $rootNode    = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()

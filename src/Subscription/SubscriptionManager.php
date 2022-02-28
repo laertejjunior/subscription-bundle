@@ -2,7 +2,7 @@
 
 namespace Shapecode\SubscriptionBundle\Subscription;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Shapecode\SubscriptionBundle\Event\ActivateEvent;
 use Shapecode\SubscriptionBundle\Event\DisableEvent;
 use Shapecode\SubscriptionBundle\Event\ExpireEvent;

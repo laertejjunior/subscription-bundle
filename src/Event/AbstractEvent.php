@@ -3,7 +3,7 @@
 namespace Shapecode\SubscriptionBundle\Event;
 
 use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Class AbstractEvent

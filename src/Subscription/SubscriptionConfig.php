@@ -2,7 +2,7 @@
 
 namespace Shapecode\SubscriptionBundle\Subscription;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityRepository;
 use Shapecode\SubscriptionBundle\Model\AddonInterface;
 use Shapecode\SubscriptionBundle\Model\FeatureInterface;

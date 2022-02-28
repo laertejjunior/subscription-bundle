@@ -2,7 +2,7 @@
 
 namespace Shapecode\SubscriptionBundle\Repository;
 
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\ObjectRepository;
 use Shapecode\SubscriptionBundle\Model\ProductInterface;
 
 interface ProductRepositoryInterface extends ObjectRepository
