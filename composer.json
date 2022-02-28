@@ -1,5 +1,5 @@
 {
-    "name": "shapecode/subscription-bundle",
+    "name": "laertejjunior/subscription-bundle",
     "description": "Symfony Bundle for manage user subscriptions",
     "keywords": [
         "Subscription",
@@ -9,12 +9,12 @@
     ],
     "type": "symfony-bundle",
     "license": "MIT",
-    "homepage": "https://github.com/shapecode/subscription-bundle",
+    "homepage": "https://github.com/laertejjunior/subscription-bundle",
     "support": {
         "email": "support@shapeocode.de",
-        "issues": "https://github.com/shapecode/subscription-bundle/issues",
-        "source": "https://github.com/shapecode/subscription-bundle/releases",
-        "wiki": "https://github.com/shapecode/subscription-bundle/wiki"
+        "issues": "https://github.com/laertejjunior/subscription-bundle/issues",
+        "source": "https://github.com/laertejjunior/subscription-bundle/releases",
+        "wiki": "https://github.com/laertejjunior/subscription-bundle/wiki"
     },
     "authors": [
         {
