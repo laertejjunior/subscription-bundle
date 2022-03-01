@@ -2,8 +2,8 @@
 
 namespace Laertejjunior\SubscriptionBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Class FeatureAccessDeniedEvent
@@ -14,26 +14,26 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 class FeatureAccessDeniedEvent extends Event
 {
 
-    /** @var FilterControllerEvent */
+    /** @var ControllerEvent */
     protected $event;
 
     /** @var string */
     protected $feature;
 
     /**
-     * @param FilterControllerEvent $event
-     * @param string                $feature
+     * @param ControllerEvent $event
+     * @param string $feature
      */
-    public function __construct(FilterControllerEvent $event, string $feature)
+    public function __construct(ControllerEvent $event, string $feature)
     {
         $this->event = $event;
         $this->feature = $feature;
     }
 
     /**
-     * @return FilterControllerEvent
+     * @return ControllerEvent
      */
-    public function getEvent(): FilterControllerEvent
+    public function getEvent(): ControllerEvent
     {
         return $this->event;
     }

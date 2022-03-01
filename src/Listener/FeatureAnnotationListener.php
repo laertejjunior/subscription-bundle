@@ -11,7 +11,7 @@ use Laertejjunior\SubscriptionBundle\Event\FeatureAccessDeniedEvent;
 use Laertejjunior\SubscriptionBundle\Feature\FeatureChecker;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class FeatureAnnotationListener implements EventSubscriberInterface
 {
-
+    
     /** @var Reader */
     protected $annotationReader;
 
@@ -58,11 +58,11 @@ class FeatureAnnotationListener implements EventSubscriberInterface
     }
 
     /**
-     * @param FilterControllerEvent $event
+     * @param ControllerEvent $event
      */
-    public function onKernelController(FilterControllerEvent $event): void
+    public function onKernelController(ControllerEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 
@@ -77,7 +77,7 @@ class FeatureAnnotationListener implements EventSubscriberInterface
     /**
      * @param iterable $controllers
      */
-    private function handleAnnotation(FilterControllerEvent $event, iterable $controllers): void
+    private function handleAnnotation(ControllerEvent $event, iterable $controllers): void
     {
         list($controller, $method) = $controllers;
 
@@ -92,10 +92,10 @@ class FeatureAnnotationListener implements EventSubscriberInterface
     }
 
     /**
-     * @param FilterControllerEvent $event
+     * @param ControllerEvent $event
      * @param ReflectionClass       $controller
      */
-    private function handleClassAnnotation(FilterControllerEvent $event, ReflectionClass $controller): void
+    private function handleClassAnnotation(ControllerEvent $event, ReflectionClass $controller): void
     {
         $annotation = $this->annotationReader->getClassAnnotation($controller, Feature::class);
 
@@ -105,11 +105,11 @@ class FeatureAnnotationListener implements EventSubscriberInterface
     }
 
     /**
-     * @param FilterControllerEvent $event
+     * @param ControllerEvent $event
      * @param ReflectionClass       $controller
      * @param string                $method
      */
-    private function handleMethodAnnotation(FilterControllerEvent $event, ReflectionClass $controller, string $method): void
+    private function handleMethodAnnotation(ControllerEvent $event, ReflectionClass $controller, string $method): void
     {
         $method = $controller->getMethod($method);
         $annotation = $this->annotationReader->getMethodAnnotation($method, Feature::class);
@@ -121,11 +121,11 @@ class FeatureAnnotationListener implements EventSubscriberInterface
 
     /**
      * @param Feature               $annotation
-     * @param FilterControllerEvent $event
+     * @param ControllerEvent $event
      * @param ReflectionClass       $controller
      * @param string|null           $method
      */
-    protected function handleAnnotationObject(Feature $annotation, FilterControllerEvent $event, ReflectionClass $controller, ?string $method = null): void
+    protected function handleAnnotationObject(Feature $annotation, ControllerEvent $event, ReflectionClass $controller, ?string $method = null): void
     {
         $features = $annotation->getFeatures();
 
