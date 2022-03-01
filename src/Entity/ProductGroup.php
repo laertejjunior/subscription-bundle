@@ -15,7 +15,7 @@ use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
  * @package App\Entity
  * @author  Nikita Loges
  *
- * @ORM\Entity(repositoryClass="App\Repository\ProductGroupRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Subscription\ProductGroupRepository")
  */
 class ProductGroup implements ProductGroupInterface
 {

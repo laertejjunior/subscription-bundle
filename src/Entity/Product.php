@@ -18,7 +18,7 @@ use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
  * @package App\Entity
  * @author  Nikita Loges
  *
- * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Subscription\ProductRepository")
  */
 class Product implements ProductInterface
 {
