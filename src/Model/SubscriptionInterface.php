@@ -79,7 +79,7 @@ interface SubscriptionInterface
     /**
      * @param boolean $renewal
      */
-    public function setAutoRenewal(bool $renewal): void;
+    public function setAutoRenewal(bool $renewal): self;
 
     /**
      * @return boolean
@@ -89,7 +89,7 @@ interface SubscriptionInterface
     /**
      * @param string $reason
      */
-    public function setReason(?string $reason): void;
+    public function setReason(?string $reason): self;
 
     /**
      * @return string
@@ -99,7 +99,7 @@ interface SubscriptionInterface
     /**
      * @param string $name
      */
-    public function setStrategy(?string $name): void;
+    public function setStrategy(?string $name): self;
 
     /**
      * @return string

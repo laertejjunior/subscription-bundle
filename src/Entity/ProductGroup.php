@@ -67,9 +67,11 @@ class ProductGroup implements ProductGroupInterface
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**

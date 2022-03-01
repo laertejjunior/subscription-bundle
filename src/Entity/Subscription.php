@@ -52,13 +52,13 @@ class Subscription implements SubscriptionInterface
     protected $addons;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeImmutable
      * @ORM\Column(type="datetime")
      */
     protected $startDate;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeImmutable
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $endDate;
@@ -92,7 +92,7 @@ class Subscription implements SubscriptionInterface
      */
     public function __construct()
     {
-        $this->setStartDate(new \DateTime());
+        $this->setStartDate(new \DateTimeImmutable());
         $this->addons = new ArrayCollection();
     }
 
@@ -115,9 +115,11 @@ class Subscription implements SubscriptionInterface
     /**
      * @param UserInterface $user
      */
-    public function setUser(?UserInterface $user): void
+    public function setUser(?UserInterface $user): self
     {
         $this->user = $user;
+
+        return $this;
     }
 
     /**
@@ -131,9 +133,11 @@ class Subscription implements SubscriptionInterface
     /**
      * @param ProductInterface $product
      */
-    public function setProduct(?ProductInterface $product): void
+    public function setProduct(?ProductInterface $product): self
     {
         $this->product = $product;
+
+        return $this;
     }
 
     /**
@@ -147,7 +151,7 @@ class Subscription implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function getStartDate(): ?\DateTime
+    public function getStartDate(): ?\DateTimeImmutable
     {
         return $this->startDate;
     }
@@ -155,15 +159,17 @@ class Subscription implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function setStartDate(?\DateTime $startDate): void
+    public function setStartDate(?\DateTimeImmutable $startDate): self
     {
         $this->startDate = $startDate;
+
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getEndDate(): ?\DateTime
+    public function getEndDate(): ?\DateTimeImmutable
     {
         return $this->endDate;
     }
@@ -171,9 +177,11 @@ class Subscription implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function setEndDate(?\DateTime $finishDate): void
+    public function setEndDate(?\DateTimeImmutable $finishDate): self
     {
         $this->endDate = $finishDate;
+
+        return $this;
     }
 
     /**
@@ -190,6 +198,8 @@ class Subscription implements SubscriptionInterface
     public function setActive(bool $active)
     {
         $this->active = $active;
+
+        return $this;
     }
 
     /**
@@ -219,9 +229,11 @@ class Subscription implements SubscriptionInterface
     /**
      * @param bool $autoRenewal
      */
-    public function setAutoRenewal(bool $autoRenewal): void
+    public function setAutoRenewal(bool $autoRenewal): self
     {
         $this->autoRenewal = $autoRenewal;
+
+        return $this;
     }
 
     /**
@@ -235,17 +247,21 @@ class Subscription implements SubscriptionInterface
     /**
      * @param string $reason
      */
-    public function setReason(?string $reason): void
+    public function setReason(?string $reason): self
     {
         $this->reason = $reason;
+
+        return $this;
     }
 
     /**
      * @param string $name
      */
-    public function setStrategy(?string $name): void
+    public function setStrategy(?string $name): self
     {
         $this->strategy = $name;
+
+        return $this;
     }
 
     /**

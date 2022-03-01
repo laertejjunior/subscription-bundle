@@ -168,9 +168,11 @@ class Product implements ProductInterface
     /**
      * @param ProductGroupInterface|null $group
      */
-    public function setGroup(?ProductGroupInterface $group): void
+    public function setGroup(?ProductGroupInterface $group): self
     {
         $this->group = $group;
+
+        return $this;
     }
 
     /**
@@ -184,9 +186,11 @@ class Product implements ProductInterface
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -208,9 +212,11 @@ class Product implements ProductInterface
     /**
      * @param float $amount
      */
-    public function setAmount($amount)
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
+
+        return $this;
     }
 
     /**
@@ -232,9 +238,11 @@ class Product implements ProductInterface
     /**
      * @param integer $duration
      */
-    public function setDuration($duration)
+    public function setDuration($duration): self
     {
         $this->duration = $duration;
+
+        return $this;
     }
 
     /**
@@ -248,9 +256,11 @@ class Product implements ProductInterface
     /**
      * @param int|null $quota
      */
-    public function setQuota($quota)
+    public function setQuota($quota): self
     {
         $this->quota = $quota;
+
+        return $this;
     }
 
     /**
@@ -264,9 +274,11 @@ class Product implements ProductInterface
     /**
      * @param bool $autoRenewal
      */
-    public function setAutoRenewal($autoRenewal)
+    public function setAutoRenewal($autoRenewal): self
     {
         $this->autoRenewal = $autoRenewal;
+
+        return $this;
     }
 
     /**
@@ -280,9 +292,11 @@ class Product implements ProductInterface
     /**
      * @param bool $default
      */
-    public function setDefault($default)
+    public function setDefault($default): self
     {
         $this->default = $default;
+
+        return $this;
     }
 
     /**
@@ -296,9 +310,11 @@ class Product implements ProductInterface
     /**
      * @param \DateTime $expirationDate
      */
-    public function setExpirationDate($expirationDate)
+    public function setExpirationDate($expirationDate): self
     {
         $this->expirationDate = $expirationDate;
+
+        return $this;
     }
 
     /**
@@ -312,9 +328,11 @@ class Product implements ProductInterface
     /**
      * @param string $strategy
      */
-    public function setStrategy($strategy)
+    public function setStrategy($strategy): self
     {
         $this->strategy = $strategy;
+
+        return $this;
     }
 
     /**
@@ -328,9 +346,11 @@ class Product implements ProductInterface
     /**
      * @param bool $enabled
      */
-    public function setEnabled($enabled)
+    public function setEnabled($enabled): self
     {
         $this->enabled = $enabled;
+
+        return $this;
     }
 
     /**
