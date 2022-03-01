@@ -52,13 +52,13 @@ class Subscription implements SubscriptionInterface
     protected $addons;
 
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
      */
     protected $startDate;
 
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $endDate;
@@ -92,7 +92,7 @@ class Subscription implements SubscriptionInterface
      */
     public function __construct()
     {
-        $this->setStartDate(new \DateTimeImmutable());
+        $this->setStartDate(new \DateTimeInterface());
         $this->addons = new ArrayCollection();
     }
 
@@ -151,7 +151,7 @@ class Subscription implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function getStartDate(): ?\DateTimeImmutable
+    public function getStartDate(): ?\DateTimeInterface
     {
         return $this->startDate;
     }
@@ -159,7 +159,7 @@ class Subscription implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function setStartDate(?\DateTimeImmutable $startDate): self
+    public function setStartDate(?\DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
 
@@ -169,7 +169,7 @@ class Subscription implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function getEndDate(): ?\DateTimeImmutable
+    public function getEndDate(): ?\DateTimeInterface
     {
         return $this->endDate;
     }
@@ -177,7 +177,7 @@ class Subscription implements SubscriptionInterface
     /**
      * {@inheritdoc}
      */
-    public function setEndDate(?\DateTimeImmutable $finishDate): self
+    public function setEndDate(?\DateTimeInterface $finishDate): self
     {
         $this->endDate = $finishDate;
 

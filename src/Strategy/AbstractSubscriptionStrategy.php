@@ -66,10 +66,10 @@ abstract class AbstractSubscriptionStrategy implements SubscriptionStrategyInter
     /**
      * Create current date.
      *
-     * @return \DateTimeImmutable
+     * @return \DateTimeInterface
      */
-    protected function createCurrentDate(): \DateTimeImmutable
+    protected function createCurrentDate(): \DateTimeInterface
     {
-        return new \DateTimeImmutable();
+        return new \DateTimeInterface();
     }
 }
