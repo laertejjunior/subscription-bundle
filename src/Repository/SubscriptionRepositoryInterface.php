@@ -1,11 +1,11 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Repository;
+namespace Laertejjunior\SubscriptionBundle\Repository;
 
 use Doctrine\Persistence\ObjectRepository;
-use Shapecode\SubscriptionBundle\Model\ProductGroupInterface;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductGroupInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 interface SubscriptionRepositoryInterface extends ObjectRepository

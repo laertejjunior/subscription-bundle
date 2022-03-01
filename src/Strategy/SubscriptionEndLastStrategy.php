@@ -1,15 +1,15 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Strategy;
+namespace Laertejjunior\SubscriptionBundle\Strategy;
 
-use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 
 /**
  * Class SubscriptionEndLastStrategy
  *
- * @package Shapecode\SubscriptionBundle\Strategy
+ * @package Laertejjunior\SubscriptionBundle\Strategy
  * @author  Nikita Loges
  */
 class SubscriptionEndLastStrategy extends AbstractSubscriptionStrategy

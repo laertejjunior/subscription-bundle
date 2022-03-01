@@ -1,10 +1,10 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Tests\Mock;
+namespace Laertejjunior\SubscriptionBundle\Tests\Mock;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 
 class SubscriptionMock implements SubscriptionInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Entity;
+namespace Laertejjunior\SubscriptionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
-use Shapecode\SubscriptionBundle\Model\ProductGroupInterface;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductGroupInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
 
 /**
  * Class Product
@@ -30,7 +30,7 @@ class ProductGroup implements ProductGroupInterface
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|ProductInterface[]
-     * @ORM\OneToMany(targetEntity="Shapecode\SubscriptionBundle\Model\ProductInterface", mappedBy="group")
+     * @ORM\OneToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\ProductInterface", mappedBy="group")
      */
     protected $products;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Repository;
+namespace Laertejjunior\SubscriptionBundle\Repository;
 
 use Doctrine\Persistence\ObjectRepository;
 
 /**
  * Interface ProductGroupRepositoryInterface
  *
- * @package Shapecode\SubscriptionBundle\Repository
+ * @package Laertejjunior\SubscriptionBundle\Repository
  * @author  Nikita Loges
  */
 interface ProductGroupRepositoryInterface extends ObjectRepository

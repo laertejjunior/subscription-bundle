@@ -1,4 +1,4 @@
-Shapecode - Subscription Bundle
+Laertejjunior - Subscription Bundle
 =======================
 [![paypal](https://img.shields.io/badge/Donate-Paypal-blue.svg)](http://paypal.me/nloges)
 
@@ -68,7 +68,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-            new Shapecode\SubscriptionBundle\ShapecodeSubscriptionBundle(),
+            new Laertejjunior\SubscriptionBundle\ShapecodeSubscriptionBundle(),
         );
     }
 
@@ -82,12 +82,12 @@ class AppKernel extends Kernel
 shapecode_subscription:
     # Where is the subscription model located in your application
     # Remember that your model must implement the interface
-    subscription_class: AppBundle\Entity\Subscription # Interface: Shapecode\SubscriptionBundle\Model\SubscriptionInterface
+    subscription_class: AppBundle\Entity\Subscription # Interface: Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface
 
     # Repository services name
     # Remember that repositories must be implement the interfaces
-    subscription_repository: app.repository.subscription # Interface: Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface
-    product_repository: app.repository.product           # Interface: Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface
+    subscription_repository: app.repository.subscription # Interface: Laertejjunior\SubscriptionBundle\Repository\SubscriptionRepositoryInterface
+    product_repository: app.repository.product           # Interface: Laertejjunior\SubscriptionBundle\Repository\ProductRepositoryInterface
 ```
 Read the [complete configuration reference](https://github.com/shapecode/subscription-bundle/blob/master/doc/ReferenceConfig.md) for more configuration options or tweaks.
 

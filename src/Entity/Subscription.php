@@ -1,15 +1,15 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Entity;
+namespace Laertejjunior\SubscriptionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
-use Shapecode\SubscriptionBundle\Model\AddonInterface;
-use Shapecode\SubscriptionBundle\Model\FeatureInterface;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Model\AddonInterface;
+use Laertejjunior\SubscriptionBundle\Model\FeatureInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -40,14 +40,14 @@ class Subscription implements SubscriptionInterface
 
     /**
      * @var ProductInterface
-     * @ORM\ManyToOne(targetEntity="Shapecode\SubscriptionBundle\Model\ProductInterface", inversedBy="subscriptions")
+     * @ORM\ManyToOne(targetEntity="Laertejjunior\SubscriptionBundle\Model\ProductInterface", inversedBy="subscriptions")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     protected $product;
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|AddonInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\AddonInterface", inversedBy="subscriptions")
+     * @ORM\ManyToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\AddonInterface", inversedBy="subscriptions")
      */
     protected $addons;
 

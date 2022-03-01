@@ -1,12 +1,12 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Tests\Command;
+namespace Laertejjunior\SubscriptionBundle\Tests\Command;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
-use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionManager;
-use Shapecode\SubscriptionBundle\Tests\Mock\SubscriptionMock;
+use Laertejjunior\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionManager;
+use Laertejjunior\SubscriptionBundle\Tests\Mock\SubscriptionMock;
 
 class CommandTestCase extends TestCase
 {

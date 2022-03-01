@@ -1,6 +1,6 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Exception;
+namespace Laertejjunior\SubscriptionBundle\Exception;
 
 class SubscriptionIntegrityException extends \Exception
 {

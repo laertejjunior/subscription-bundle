@@ -1,9 +1,9 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Tests\Command;
+namespace Laertejjunior\SubscriptionBundle\Tests\Command;
 
-use Shapecode\SubscriptionBundle\Command\AbstractCommand;
-use Shapecode\SubscriptionBundle\Command\ActiveCommand;
+use Laertejjunior\SubscriptionBundle\Command\AbstractCommand;
+use Laertejjunior\SubscriptionBundle\Command\ActiveCommand;
 use Symfony\Component\Console\Tester\CommandTester;
 
 class ActiveCommandTest extends CommandTestCase

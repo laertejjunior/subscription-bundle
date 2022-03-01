@@ -1,8 +1,8 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Command;
+namespace Laertejjunior\SubscriptionBundle\Command;
 
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 
 class DisableCommand extends AbstractCommand
 {

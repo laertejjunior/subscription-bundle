@@ -1,14 +1,14 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Listener;
+namespace Laertejjunior\SubscriptionBundle\Listener;
 
 use Doctrine\Common\Annotations\Reader;
 use ReflectionClass;
 use ReflectionException;
 use RuntimeException;
-use Shapecode\SubscriptionBundle\Annotation\Feature;
-use Shapecode\SubscriptionBundle\Event\FeatureAccessDeniedEvent;
-use Shapecode\SubscriptionBundle\Feature\FeatureChecker;
+use Laertejjunior\SubscriptionBundle\Annotation\Feature;
+use Laertejjunior\SubscriptionBundle\Event\FeatureAccessDeniedEvent;
+use Laertejjunior\SubscriptionBundle\Feature\FeatureChecker;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 /**
  * Class FeatureAnnotationListener
  *
- * @package Shapecode\SubscriptionBundle\Listener
+ * @package Laertejjunior\SubscriptionBundle\Listener
  * @author  Nikita Loges
  */
 class FeatureAnnotationListener implements EventSubscriberInterface

@@ -1,19 +1,19 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Entity;
+namespace Laertejjunior\SubscriptionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
-use Shapecode\SubscriptionBundle\Model\AddonInterface;
-use Shapecode\SubscriptionBundle\Model\FeatureInterface;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\AddonInterface;
+use Laertejjunior\SubscriptionBundle\Model\FeatureInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
 
 /**
  * Class Feature
  *
- * @package Shapecode\SubscriptionBundle\Entity
+ * @package Laertejjunior\SubscriptionBundle\Entity
  * @author  Nikita Loges
  *
  * @ORM\Entity
@@ -31,13 +31,13 @@ class Feature implements FeatureInterface
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|ProductInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\ProductInterface", mappedBy="features", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\ProductInterface", mappedBy="features", cascade={"persist"})
      */
     protected $products;
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|AddonInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\AddonInterface", mappedBy="features")
+     * @ORM\ManyToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\AddonInterface", mappedBy="features")
      */
     protected $addons;
 

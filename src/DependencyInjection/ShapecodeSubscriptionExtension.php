@@ -1,19 +1,19 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\DependencyInjection;
+namespace Laertejjunior\SubscriptionBundle\DependencyInjection;
 
-use Shapecode\SubscriptionBundle\Entity\Addon;
-use Shapecode\SubscriptionBundle\Entity\Feature;
-use Shapecode\SubscriptionBundle\Entity\Product;
-use Shapecode\SubscriptionBundle\Entity\ProductGroup;
-use Shapecode\SubscriptionBundle\Entity\Subscription;
-use Shapecode\SubscriptionBundle\Model\AddonInterface;
-use Shapecode\SubscriptionBundle\Model\FeatureInterface;
-use Shapecode\SubscriptionBundle\Model\ProductGroupInterface;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Shapecode\SubscriptionBundle\Strategy\ProductStrategyInterface;
-use Shapecode\SubscriptionBundle\Strategy\SubscriptionStrategyInterface;
+use Laertejjunior\SubscriptionBundle\Entity\Addon;
+use Laertejjunior\SubscriptionBundle\Entity\Feature;
+use Laertejjunior\SubscriptionBundle\Entity\Product;
+use Laertejjunior\SubscriptionBundle\Entity\ProductGroup;
+use Laertejjunior\SubscriptionBundle\Entity\Subscription;
+use Laertejjunior\SubscriptionBundle\Model\AddonInterface;
+use Laertejjunior\SubscriptionBundle\Model\FeatureInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductGroupInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Strategy\ProductStrategyInterface;
+use Laertejjunior\SubscriptionBundle\Strategy\SubscriptionStrategyInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -23,7 +23,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 /**
  * Class ShapecodeSubscriptionExtension
  *
- * @package Shapecode\SubscriptionBundle\DependencyInjection
+ * @package Laertejjunior\SubscriptionBundle\DependencyInjection
  * @author  Nikita Loges
  */
 class ShapecodeSubscriptionExtension extends ConfigurableExtension implements PrependExtensionInterface

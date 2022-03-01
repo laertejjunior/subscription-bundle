@@ -1,6 +1,6 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Model;
+namespace Laertejjunior\SubscriptionBundle\Model;
 
 use App\Entity\ProductAddon;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Interface SubscriptionInterface
  *
- * @package Shapecode\SubscriptionBundle\Model
+ * @package Laertejjunior\SubscriptionBundle\Model
  * @author  Nikita Loges
  */
 interface SubscriptionInterface

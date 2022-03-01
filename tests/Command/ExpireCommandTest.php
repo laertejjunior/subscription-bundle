@@ -1,9 +1,9 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Tests\Command;
+namespace Laertejjunior\SubscriptionBundle\Tests\Command;
 
-use Shapecode\SubscriptionBundle\Command\AbstractCommand;
-use Shapecode\SubscriptionBundle\Command\ExpireCommand;
+use Laertejjunior\SubscriptionBundle\Command\AbstractCommand;
+use Laertejjunior\SubscriptionBundle\Command\ExpireCommand;
 use Symfony\Component\Console\Tester\CommandTester;
 
 class ExpireCommandTest extends CommandTestCase

@@ -1,14 +1,14 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Event;
+namespace Laertejjunior\SubscriptionBundle\Event;
 
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Class AbstractEvent
  *
- * @package Shapecode\SubscriptionBundle\Event
+ * @package Laertejjunior\SubscriptionBundle\Event
  * @author  Nikita Loges
  */
 class AbstractEvent extends Event

@@ -1,9 +1,9 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\DependencyInjection\Compiler;
+namespace Laertejjunior\SubscriptionBundle\DependencyInjection\Compiler;
 
-use Shapecode\SubscriptionBundle\Subscription\ProductRegistry;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionRegistry;
+use Laertejjunior\SubscriptionBundle\Subscription\ProductRegistry;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionRegistry;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;

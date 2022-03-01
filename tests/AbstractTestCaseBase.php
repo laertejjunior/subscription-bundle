@@ -1,20 +1,20 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Tests;
+namespace Laertejjunior\SubscriptionBundle\Tests;
 
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
-use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface;
-use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
-use Shapecode\SubscriptionBundle\Strategy\ProductDefaultStrategy;
-use Shapecode\SubscriptionBundle\Strategy\ProductStrategyInterface;
-use Shapecode\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
-use Shapecode\SubscriptionBundle\Registry\SubscriptionRegistry;
-use Shapecode\SubscriptionBundle\Tests\Mock\SubscriptionMock;
-use Shapecode\SubscriptionBundle\Tests\Mock\UserMock;
+use Laertejjunior\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Repository\ProductRepositoryInterface;
+use Laertejjunior\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
+use Laertejjunior\SubscriptionBundle\Strategy\ProductDefaultStrategy;
+use Laertejjunior\SubscriptionBundle\Strategy\ProductStrategyInterface;
+use Laertejjunior\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
+use Laertejjunior\SubscriptionBundle\Registry\SubscriptionRegistry;
+use Laertejjunior\SubscriptionBundle\Tests\Mock\SubscriptionMock;
+use Laertejjunior\SubscriptionBundle\Tests\Mock\UserMock;
 
 abstract class AbstractTestCaseBase extends TestCase
 {

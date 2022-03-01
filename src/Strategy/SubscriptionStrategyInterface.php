@@ -1,11 +1,11 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Strategy;
+namespace Laertejjunior\SubscriptionBundle\Strategy;
 
-use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Shapecode\SubscriptionBundle\Exception\StrategyNotFoundException;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Laertejjunior\SubscriptionBundle\Exception\StrategyNotFoundException;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 
 interface SubscriptionStrategyInterface
 {

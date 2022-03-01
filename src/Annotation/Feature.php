@@ -1,6 +1,6 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Annotation;
+namespace Laertejjunior\SubscriptionBundle\Annotation;
 
 /**
  * Class Feature
@@ -8,7 +8,7 @@ namespace Shapecode\SubscriptionBundle\Annotation;
  * @Annotation
  * @Target({"CLASS", "METHOD"})
  *
- * @package Shapecode\SubscriptionBundle\Annotation
+ * @package Laertejjunior\SubscriptionBundle\Annotation
  * @author  Nikita Loges
  */
 class Feature

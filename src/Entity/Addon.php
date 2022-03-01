@@ -1,20 +1,20 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Entity;
+namespace Laertejjunior\SubscriptionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
-use Shapecode\SubscriptionBundle\Model\AddonInterface;
-use Shapecode\SubscriptionBundle\Model\FeatureInterface;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Model\AddonInterface;
+use Laertejjunior\SubscriptionBundle\Model\FeatureInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 
 /**
  * Class ProductAddon
  *
- * @package Shapecode\SubscriptionBundle\Entity
+ * @package Laertejjunior\SubscriptionBundle\Entity
  * @author  Nikita Loges
  *
  * @ORM\Entity
@@ -32,19 +32,19 @@ class Addon implements AddonInterface
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|ProductInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\ProductInterface", mappedBy="addons")
+     * @ORM\ManyToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\ProductInterface", mappedBy="addons")
      */
     protected $products;
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|SubscriptionInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\SubscriptionInterface", mappedBy="addons")
+     * @ORM\ManyToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface", mappedBy="addons")
      */
     protected $subscriptions;
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|FeatureInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\FeatureInterface", inversedBy="addons")
+     * @ORM\ManyToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\FeatureInterface", inversedBy="addons")
      */
     protected $features;
 

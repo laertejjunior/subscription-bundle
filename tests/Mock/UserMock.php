@@ -1,6 +1,6 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Tests\Mock;
+namespace Laertejjunior\SubscriptionBundle\Tests\Mock;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 

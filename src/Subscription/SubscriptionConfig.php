@@ -1,17 +1,17 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Subscription;
+namespace Laertejjunior\SubscriptionBundle\Subscription;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityRepository;
-use Shapecode\SubscriptionBundle\Model\AddonInterface;
-use Shapecode\SubscriptionBundle\Model\FeatureInterface;
-use Shapecode\SubscriptionBundle\Model\ProductGroupInterface;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Shapecode\SubscriptionBundle\Repository\ProductGroupRepositoryInterface;
-use Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface;
-use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
+use Laertejjunior\SubscriptionBundle\Model\AddonInterface;
+use Laertejjunior\SubscriptionBundle\Model\FeatureInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductGroupInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Repository\ProductGroupRepositoryInterface;
+use Laertejjunior\SubscriptionBundle\Repository\ProductRepositoryInterface;
+use Laertejjunior\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
 
 /**
  * Class SubscriptionConfig

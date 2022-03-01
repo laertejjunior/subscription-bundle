@@ -1,9 +1,9 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Repository;
+namespace Laertejjunior\SubscriptionBundle\Repository;
 
 use Doctrine\Persistence\ObjectRepository;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
 
 interface ProductRepositoryInterface extends ObjectRepository
 {

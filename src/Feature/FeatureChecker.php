@@ -1,16 +1,16 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Feature;
+namespace Laertejjunior\SubscriptionBundle\Feature;
 
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Shapecode\SubscriptionBundle\Subscription\FeatureManager;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Subscription\FeatureManager;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionConfig;
 use Symfony\Component\Security\Core\Security;
 
 /**
  * Class FeatureChecker
  *
- * @package Shapecode\SubscriptionBundle\Feature
+ * @package Laertejjunior\SubscriptionBundle\Feature
  * @author  Nikita Loges
  */
 class FeatureChecker

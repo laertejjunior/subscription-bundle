@@ -1,15 +1,15 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Tests\Strategy;
+namespace Laertejjunior\SubscriptionBundle\Tests\Strategy;
 
 use PHPUnit\Framework\TestCase;
-use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Shapecode\SubscriptionBundle\Strategy\ProductDefaultStrategy;
-use Shapecode\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
-use Shapecode\SubscriptionBundle\Tests\AbstractTestCaseBase;
-use Shapecode\SubscriptionBundle\Tests\Mock\SubscriptionMock;
+use Laertejjunior\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Strategy\ProductDefaultStrategy;
+use Laertejjunior\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
+use Laertejjunior\SubscriptionBundle\Tests\AbstractTestCaseBase;
+use Laertejjunior\SubscriptionBundle\Tests\Mock\SubscriptionMock;
 
 class EndLastSubscriptionStrategyTest extends AbstractTestCaseBase
 {

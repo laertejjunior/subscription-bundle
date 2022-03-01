@@ -1,15 +1,15 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Twig\Extension;
+namespace Laertejjunior\SubscriptionBundle\Twig\Extension;
 
-use Shapecode\SubscriptionBundle\Feature\FeatureChecker;
+use Laertejjunior\SubscriptionBundle\Feature\FeatureChecker;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
  * Class FeatureExtension
  *
- * @package Shapecode\SubscriptionBundle\Twig\Extension
+ * @package Laertejjunior\SubscriptionBundle\Twig\Extension
  * @author  Nikita Loges
  */
 class FeatureExtension extends AbstractExtension

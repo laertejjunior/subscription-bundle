@@ -1,21 +1,21 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Strategy;
+namespace Laertejjunior\SubscriptionBundle\Strategy;
 
-use Shapecode\SubscriptionBundle\Exception\ProductExpiredException;
-use Shapecode\SubscriptionBundle\Exception\ProductIntegrityException;
-use Shapecode\SubscriptionBundle\Exception\ProductQuoteExceededException;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface;
-use Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
-use Shapecode\SubscriptionBundle\Subscription\ProductRegistry;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionRegistry;
+use Laertejjunior\SubscriptionBundle\Exception\ProductExpiredException;
+use Laertejjunior\SubscriptionBundle\Exception\ProductIntegrityException;
+use Laertejjunior\SubscriptionBundle\Exception\ProductQuoteExceededException;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Repository\ProductRepositoryInterface;
+use Laertejjunior\SubscriptionBundle\Repository\SubscriptionRepositoryInterface;
+use Laertejjunior\SubscriptionBundle\Subscription\ProductRegistry;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionConfig;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionRegistry;
 
 /**
  * Class AbstractProductStrategy
  *
- * @package Shapecode\SubscriptionBundle\Strategy
+ * @package Laertejjunior\SubscriptionBundle\Strategy
  * @author  Nikita Loges
  */
 abstract class AbstractProductStrategy implements ProductStrategyInterface

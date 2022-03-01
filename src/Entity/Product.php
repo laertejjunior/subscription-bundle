@@ -1,16 +1,16 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Entity;
+namespace Laertejjunior\SubscriptionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
-use Shapecode\SubscriptionBundle\Model\AddonInterface;
-use Shapecode\SubscriptionBundle\Model\FeatureInterface;
-use Shapecode\SubscriptionBundle\Model\ProductGroupInterface;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Model\AddonInterface;
+use Laertejjunior\SubscriptionBundle\Model\FeatureInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductGroupInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 
 /**
  * Class Product
@@ -33,20 +33,20 @@ class Product implements ProductInterface
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|SubscriptionInterface[]
-     * @ORM\OneToMany(targetEntity="Shapecode\SubscriptionBundle\Model\SubscriptionInterface", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface", mappedBy="product")
      */
     protected $subscriptions;
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|FeatureInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\FeatureInterface", inversedBy="products")
+     * @ORM\ManyToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\FeatureInterface", inversedBy="products")
      * @ORM\OrderBy({"position": "ASC"})
      */
     protected $features;
 
     /**
      * @var ArrayCollection|PersistentCollection|Collection|AddonInterface[]
-     * @ORM\ManyToMany(targetEntity="Shapecode\SubscriptionBundle\Model\AddonInterface", inversedBy="products")
+     * @ORM\ManyToMany(targetEntity="Laertejjunior\SubscriptionBundle\Model\AddonInterface", inversedBy="products")
      */
     protected $addons;
 
@@ -59,7 +59,7 @@ class Product implements ProductInterface
 
     /**
      * @var ProductGroupInterface|null
-     * @ORM\ManyToOne(targetEntity="Shapecode\SubscriptionBundle\Model\ProductGroupInterface", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="Laertejjunior\SubscriptionBundle\Model\ProductGroupInterface", inversedBy="products")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     protected $group;

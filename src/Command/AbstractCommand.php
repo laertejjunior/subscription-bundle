@@ -1,10 +1,10 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Command;
+namespace Laertejjunior\SubscriptionBundle\Command;
 
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionManager;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionConfig;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Class AbstractCommand
  *
- * @package Shapecode\SubscriptionBundle\Command
+ * @package Laertejjunior\SubscriptionBundle\Command
  * @author  Nikita Loges
  */
 abstract class AbstractCommand extends Command

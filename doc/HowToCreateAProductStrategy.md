@@ -18,8 +18,8 @@ Place your strategy file where you consider more suitable in your file structure
 
 namespace App\Strategy\Product;
 
-use Shapecode\SubscriptionBundle\Strategy\AbstractProductStrategy;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Strategy\AbstractProductStrategy;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
 
 class MyProductStrategy extends AbstractProductStrategy
 {
@@ -43,8 +43,8 @@ class MyProductStrategy extends AbstractProductStrategy
 ````
 
 #### ❗ Remember:
-* Use in your product model the next interface: ***Shapecode\SubscriptionBundle\Model\ProductInterface***.
-* Use in your repositories the next interface: ***Shapecode\SubscriptionBundle\Repository\ProductRepositoryInterface***.
+* Use in your product model the next interface: ***Laertejjunior\SubscriptionBundle\Model\ProductInterface***.
+* Use in your repositories the next interface: ***Laertejjunior\SubscriptionBundle\Repository\ProductRepositoryInterface***.
 
 Both classes must be [configurated](https://github.com/shapecode/subscription-bundle/blob/master/doc/ReferenceConfig.md).
 

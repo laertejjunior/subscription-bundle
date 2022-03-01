@@ -1,11 +1,11 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Event;
+namespace Laertejjunior\SubscriptionBundle\Event;
 
 /**
  * Class ExpireEvent
  *
- * @package Shapecode\SubscriptionBundle\Event
+ * @package Laertejjunior\SubscriptionBundle\Event
  * @author  Nikita Loges
  */
 class ExpireEvent extends AbstractEvent

@@ -12,8 +12,8 @@ Place your strategy file where you consider more suitable in your file structure
 
 namespace App\Strategy\Subscription;
 
-use Shapecode\SubscriptionBundle\Strategy\AbstractSubscriptionStrategy;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Strategy\AbstractSubscriptionStrategy;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
 
 class MyProductStrategy extends AbstractSubscriptionStrategy
 {
@@ -47,8 +47,8 @@ class MyProductStrategy extends AbstractSubscriptionStrategy
 * Review the **[end_last](https://github.com/shapecode/subscription-bundle/blob/master/doc/strategies/subscription/EndLastStrategy.md)** strategy if your need help.
 
 #### ❗ Remember:
-* Use in your subscription model the next interface: ***Shapecode\SubscriptionBundle\Model\SubscriptionInterface***.
-* Use in your repositories the next interface: ***Shapecode\SubscriptionBundle\Repository\SubscriptionRepositoryInterface***.
+* Use in your subscription model the next interface: ***Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface***.
+* Use in your repositories the next interface: ***Laertejjunior\SubscriptionBundle\Repository\SubscriptionRepositoryInterface***.
 
 Both classes must be [configurated](https://github.com/shapecode/subscription-bundle/blob/master/doc/ReferenceConfig.md).
 

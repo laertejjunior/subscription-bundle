@@ -1,14 +1,14 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Subscription;
+namespace Laertejjunior\SubscriptionBundle\Subscription;
 
-use Shapecode\SubscriptionBundle\Exception\StrategyNotFoundException;
-use Shapecode\SubscriptionBundle\Strategy\ProductStrategyInterface;
+use Laertejjunior\SubscriptionBundle\Exception\StrategyNotFoundException;
+use Laertejjunior\SubscriptionBundle\Strategy\ProductStrategyInterface;
 
 /**
  * Class ProductRegistry
  *
- * @package Shapecode\SubscriptionBundle\Subscription
+ * @package Laertejjunior\SubscriptionBundle\Subscription
  * @author  Nikita Loges
  */
 class ProductRegistry

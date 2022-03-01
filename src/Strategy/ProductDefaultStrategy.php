@@ -1,17 +1,17 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Strategy;
+namespace Laertejjunior\SubscriptionBundle\Strategy;
 
-use Shapecode\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
-use Shapecode\SubscriptionBundle\Exception\ProductExpiredException;
-use Shapecode\SubscriptionBundle\Exception\ProductIntegrityException;
-use Shapecode\SubscriptionBundle\Exception\ProductQuoteExceededException;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
+use Laertejjunior\SubscriptionBundle\Exception\ProductExpiredException;
+use Laertejjunior\SubscriptionBundle\Exception\ProductIntegrityException;
+use Laertejjunior\SubscriptionBundle\Exception\ProductQuoteExceededException;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
 
 /**
  * Class ProductDefaultStrategy
  *
- * @package Shapecode\SubscriptionBundle\Strategy
+ * @package Laertejjunior\SubscriptionBundle\Strategy
  * @author  Nikita Loges
  */
 class ProductDefaultStrategy extends AbstractProductStrategy

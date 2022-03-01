@@ -1,18 +1,18 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Subscription;
+namespace Laertejjunior\SubscriptionBundle\Subscription;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class FeatureManager
  *
- * @package Shapecode\SubscriptionBundle\Subscription
+ * @package Laertejjunior\SubscriptionBundle\Subscription
  * @author  Nikita Loges
  */
 class FeatureManager

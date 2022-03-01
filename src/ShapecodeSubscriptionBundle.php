@@ -1,15 +1,15 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle;
+namespace Laertejjunior\SubscriptionBundle;
 
-use Shapecode\SubscriptionBundle\DependencyInjection\Compiler\SubscriptionStrategyCompilerPass;
+use Laertejjunior\SubscriptionBundle\DependencyInjection\Compiler\SubscriptionStrategyCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class ShapecodeSubscriptionBundle
  *
- * @package Shapecode\SubscriptionBundle
+ * @package Laertejjunior\SubscriptionBundle
  * @author  Nikita Loges
  */
 class ShapecodeSubscriptionBundle extends Bundle

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Event;
+namespace Laertejjunior\SubscriptionBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 /**
  * Class FeatureAccessDeniedEvent
  *
- * @package Shapecode\SubscriptionBundle\Event
+ * @package Laertejjunior\SubscriptionBundle\Event
  * @author  Nikita Loges
  */
 class FeatureAccessDeniedEvent extends Event

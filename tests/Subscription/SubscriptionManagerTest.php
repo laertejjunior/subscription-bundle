@@ -1,18 +1,18 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Tests\Subscription;
+namespace Laertejjunior\SubscriptionBundle\Tests\Subscription;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Shapecode\SubscriptionBundle\Exception\SubscriptionRenewalException;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Shapecode\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
-use Shapecode\SubscriptionBundle\Registry\SubscriptionRegistry;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionManager;
-use Shapecode\SubscriptionBundle\Tests\AbstractTestCaseBase;
-use Shapecode\SubscriptionBundle\Tests\Mock\SubscriptionMock;
-use Shapecode\SubscriptionBundle\Tests\Mock\UserMock;
+use Laertejjunior\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Laertejjunior\SubscriptionBundle\Exception\SubscriptionRenewalException;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Strategy\SubscriptionEndLastStrategy;
+use Laertejjunior\SubscriptionBundle\Registry\SubscriptionRegistry;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionManager;
+use Laertejjunior\SubscriptionBundle\Tests\AbstractTestCaseBase;
+use Laertejjunior\SubscriptionBundle\Tests\Mock\SubscriptionMock;
+use Laertejjunior\SubscriptionBundle\Tests\Mock\UserMock;
 
 class SubscriptionManagerTest extends AbstractTestCaseBase
 {

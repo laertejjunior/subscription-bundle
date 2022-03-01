@@ -1,11 +1,11 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Model;
+namespace Laertejjunior\SubscriptionBundle\Model;
 
 /**
  * Interface ProductGroupInterface
  *
- * @package Shapecode\SubscriptionBundle\Model
+ * @package Laertejjunior\SubscriptionBundle\Model
  * @author  Nikita Loges
  */
 interface ProductGroupInterface

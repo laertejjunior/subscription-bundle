@@ -1,9 +1,9 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Strategy;
+namespace Laertejjunior\SubscriptionBundle\Strategy;
 
-use Shapecode\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
 
 interface ProductStrategyInterface
 {

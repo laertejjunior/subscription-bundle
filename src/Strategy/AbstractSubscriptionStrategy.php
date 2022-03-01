@@ -1,16 +1,16 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Strategy;
+namespace Laertejjunior\SubscriptionBundle\Strategy;
 
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Shapecode\SubscriptionBundle\Subscription\ProductRegistry;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionConfig;
-use Shapecode\SubscriptionBundle\Subscription\SubscriptionRegistry;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Subscription\ProductRegistry;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionConfig;
+use Laertejjunior\SubscriptionBundle\Subscription\SubscriptionRegistry;
 
 /**
  * Class AbstractSubscriptionStrategy
  *
- * @package Shapecode\SubscriptionBundle\Strategy
+ * @package Laertejjunior\SubscriptionBundle\Strategy
  * @author  Nikita Loges
  */
 abstract class AbstractSubscriptionStrategy implements SubscriptionStrategyInterface

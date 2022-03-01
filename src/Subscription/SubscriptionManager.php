@@ -1,28 +1,28 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\Subscription;
+namespace Laertejjunior\SubscriptionBundle\Subscription;
 
 use Doctrine\Persistence\ManagerRegistry;
-use Shapecode\SubscriptionBundle\Event\ActivateEvent;
-use Shapecode\SubscriptionBundle\Event\DisableEvent;
-use Shapecode\SubscriptionBundle\Event\ExpireEvent;
-use Shapecode\SubscriptionBundle\Event\RenewEvent;
-use Shapecode\SubscriptionBundle\Exception\PermanentSubscriptionException;
-use Shapecode\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
-use Shapecode\SubscriptionBundle\Exception\StrategyNotFoundException;
-use Shapecode\SubscriptionBundle\Exception\SubscriptionIntegrityException;
-use Shapecode\SubscriptionBundle\Exception\SubscriptionRenewalException;
-use Shapecode\SubscriptionBundle\Exception\SubscriptionStatusException;
-use Shapecode\SubscriptionBundle\Model\ProductInterface;
-use Shapecode\SubscriptionBundle\Model\SubscriptionInterface;
-use Shapecode\SubscriptionBundle\Strategy\SubscriptionStrategyInterface;
+use Laertejjunior\SubscriptionBundle\Event\ActivateEvent;
+use Laertejjunior\SubscriptionBundle\Event\DisableEvent;
+use Laertejjunior\SubscriptionBundle\Event\ExpireEvent;
+use Laertejjunior\SubscriptionBundle\Event\RenewEvent;
+use Laertejjunior\SubscriptionBundle\Exception\PermanentSubscriptionException;
+use Laertejjunior\SubscriptionBundle\Exception\ProductDefaultNotFoundException;
+use Laertejjunior\SubscriptionBundle\Exception\StrategyNotFoundException;
+use Laertejjunior\SubscriptionBundle\Exception\SubscriptionIntegrityException;
+use Laertejjunior\SubscriptionBundle\Exception\SubscriptionRenewalException;
+use Laertejjunior\SubscriptionBundle\Exception\SubscriptionStatusException;
+use Laertejjunior\SubscriptionBundle\Model\ProductInterface;
+use Laertejjunior\SubscriptionBundle\Model\SubscriptionInterface;
+use Laertejjunior\SubscriptionBundle\Strategy\SubscriptionStrategyInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class SubscriptionManager
  *
- * @package Shapecode\SubscriptionBundle\Subscription
+ * @package Laertejjunior\SubscriptionBundle\Subscription
  * @author  Nikita Loges
  */
 class SubscriptionManager

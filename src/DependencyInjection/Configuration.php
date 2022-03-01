@@ -1,6 +1,6 @@
 <?php
 
-namespace Shapecode\SubscriptionBundle\DependencyInjection;
+namespace Laertejjunior\SubscriptionBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * Class Configuration
  *
- * @package Shapecode\SubscriptionBundle\DependencyInjection
+ * @package Laertejjunior\SubscriptionBundle\DependencyInjection
  * @author  Nikita Loges
  */
 class Configuration implements ConfigurationInterface
