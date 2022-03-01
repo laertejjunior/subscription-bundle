@@ -37,7 +37,7 @@ interface ProductInterface
     public function getDuration();
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
     public function getExpirationDate();
 

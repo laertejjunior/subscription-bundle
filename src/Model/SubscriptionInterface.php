@@ -27,24 +27,24 @@ interface SubscriptionInterface
     public function setUser(?UserInterface $user): self;
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
-    public function getStartDate(): ?\DateTime;
+    public function getStartDate(): ?\DateTimeImmutable;
 
     /**
-     * @param \DateTime $dateTime
+     * @param \DateTimeImmutable $dateTime
      */
-    public function setStartDate(?\DateTime $dateTime): self;
+    public function setStartDate(?\DateTimeImmutable $dateTime): self;
 
     /**
-     * @return \DateTime|null
+     * @return \DateTimeImmutable|null
      */
-    public function getEndDate(): ?\DateTime;
+    public function getEndDate(): ?\DateTimeImmutable;
 
     /**
-     * @param null|\DateTime $dateTime
+     * @param null|\DateTimeImmutable $dateTime
      */
-    public function setEndDate(?\DateTime $dateTime): self;
+    public function setEndDate(?\DateTimeImmutable $dateTime): self;
 
     /**
      * @return AddonInterface[]|ArrayCollection|Collection|PersistentCollection
