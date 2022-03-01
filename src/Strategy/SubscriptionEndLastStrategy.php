@@ -67,20 +67,20 @@ class SubscriptionEndLastStrategy extends AbstractSubscriptionStrategy
     /**
      * Create subscription.
      *
-     * @param \DateTime $startDate
+     * @param \DateTimeImmutable $startDate
      * @param ProductInterface   $product
      *
      * @return SubscriptionInterface
      */
-    protected function create(\DateTime $startDate, ProductInterface $product): SubscriptionInterface
+    protected function create(\DateTimeImmutable $startDate, ProductInterface $product): SubscriptionInterface
     {
         $endDate = null;
 
-        if ($product->getDuration() > 0) {
+        if ($product->getDuration()->s > 0) {
             $endDate = clone $startDate;
-            $endDate->modify(sprintf('+%s seconds', $product->getDuration()));
+            $endDate->modify(sprintf('+%s seconds', $product->getDuration()->s));
         }
-
+        
         // Create the new subscription
         $subscription = $this->createSubscriptionInstance();
         $subscription->setProduct($product);
