@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @package App\Entity
  * @author  Nikita Loges
  *
- * @ORM\Entity(repositoryClass="App\Repository\SubscriptionRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Subscription\SubscriptionRepository")
  */
 class Subscription implements SubscriptionInterface
 {
