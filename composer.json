@@ -46,7 +46,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Shapecode\\SubscriptionBundle\\": "src/"
+            "Laertejjunior\\SubscriptionBundle\\": "src/"
         }
     },
     "config": {
@@ -54,7 +54,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Shapecode\\SubscriptionBundle\\Tests\\": "tests/"
+            "Laertejjunior\\SubscriptionBundle\\Tests\\": "tests/"
         }
     },
     "extra": {
