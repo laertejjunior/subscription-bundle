@@ -70,6 +70,6 @@ abstract class AbstractSubscriptionStrategy implements SubscriptionStrategyInter
      */
     protected function createCurrentDate(): \DateTimeInterface
     {
-        return new \DateTimeInterface();
+        return new \DateTime();
     }
 }
