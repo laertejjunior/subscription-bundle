@@ -29,7 +29,7 @@ interface ProductInterface
     /**
      * @param ProductGroupInterface|null $group
      */
-    public function setGroup(?ProductGroupInterface $group): void;
+    public function setGroup(?ProductGroupInterface $group): self;
 
     /**
      * @return \DateInterval

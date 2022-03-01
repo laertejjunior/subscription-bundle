@@ -24,7 +24,7 @@ interface SubscriptionInterface
     /**
      * @param UserInterface $user
      */
-    public function setUser(?UserInterface $user): void;
+    public function setUser(?UserInterface $user): self;
 
     /**
      * @return \DateTime
@@ -34,7 +34,7 @@ interface SubscriptionInterface
     /**
      * @param \DateTime $dateTime
      */
-    public function setStartDate(?\DateTime $dateTime): void;
+    public function setStartDate(?\DateTime $dateTime): self;
 
     /**
      * @return \DateTime|null
@@ -44,7 +44,7 @@ interface SubscriptionInterface
     /**
      * @param null|\DateTime $dateTime
      */
-    public function setEndDate(?\DateTime $dateTime): void;
+    public function setEndDate(?\DateTime $dateTime): self;
 
     /**
      * @return AddonInterface[]|ArrayCollection|Collection|PersistentCollection
@@ -61,7 +61,7 @@ interface SubscriptionInterface
      *
      * @return mixed
      */
-    public function setProduct(?ProductInterface $product): void;
+    public function setProduct(?ProductInterface $product): self;
 
     /**
      * @return boolean
